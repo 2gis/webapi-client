@@ -109,6 +109,7 @@ class ApiConnection
     private function decodeResponse($data)
     {
         switch ($this->format) {
+            /** @noinspection PhpMissingBreakStatementInspection */
             case 'jsonp':
                 $data = preg_replace("/ ^[?\w(]+ | [)]+\s*$ /x", "", $data); //JSONP -> JSON
             case 'json':

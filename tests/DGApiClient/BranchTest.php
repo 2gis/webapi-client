@@ -1,13 +1,13 @@
 <?php
 
-use \DGApiClient\mappers;
+use \DGApiClient\Mappers;
 
 class BranchTest extends AbstractDomainTestCase {
 
     public function testGetBranch()
     {
-        $branch = $this->catalog->getBranch(141265769361176);
-        $this->assertTrue($branch instanceof mappers\Branch);
+        $branch = $this->catalog->getBranch(141265770608749);
+        $this->assertTrue($branch instanceof Mappers\Branch);
     }
 
 }

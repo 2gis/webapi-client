@@ -2,7 +2,7 @@
 
 namespace DGApiClient;
 
-use DGApiClient\exceptions\ConnectionException;
+use DGApiClient\Exceptions\ConnectionException;
 
 /**
  * Class ApiConnection
@@ -74,11 +74,11 @@ class ApiConnection
      * @return mixed
      * @todo: timeout exception
      * @todo: host unreachable
-     * @throws exceptions\ConnectionException
+     * @throws ConnectionException
      */
     public function send($service, array $params = array())
     {
-        $curl = $this->getCurl($service);
+        $curl = $this->getCurl();
         $params = array_merge(array('key' => $this->key, 'language' => $this->language), $params);
         curl_setopt(
             $this->curl,
@@ -155,7 +155,7 @@ class ApiConnection
      * @param \Exception $previous
      * @param string $type
      * @return bool
-     * @throws exceptions\ConnectionException
+     * @throws ConnectionException
      */
     protected function raiseException($message = "", $code = 0, \Exception $previous = null, $type = "")
     {
@@ -169,7 +169,7 @@ class ApiConnection
      * @param array $meta
      * @param string $defaultMessage
      * @return bool
-     * @throws exceptions\ConnectionException
+     * @throws ConnectionException
      */
     protected function metaException(array $meta, $defaultMessage = "")
     {

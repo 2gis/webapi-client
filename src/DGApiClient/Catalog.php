@@ -2,7 +2,8 @@
 
 namespace DGApiClient;
 
-use DGApiClient\mappers\GeneralRubric;
+use DGApiClient\Mappers\GeneralRubric;
+use DGApiClient\Mappers\Rubric;
 
 class Catalog extends AbstractDomainClient
 {
@@ -16,7 +17,7 @@ class Catalog extends AbstractDomainClient
      * @param int $parentId
      * @param string $sort
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/list
-     * @return mappers\GeneralRubric[]|mappers\Rubric[]
+     * @return GeneralRubric[]|Rubric[]
      */
     public function getRubricList($regionId, $parentId = 0, $sort = self::SORT_NAME)
     {
@@ -41,13 +42,13 @@ class Catalog extends AbstractDomainClient
      * Получение рубрики
      * @param int $id
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/get
-     * @return mappers\GeneralRubric|mappers\Rubric|bool
+     * @return GeneralRubric|Rubric|bool
      */
     public function getRubric($id)
     {
         return $this->getSingle(
             'catalog/rubric/get',
-            __NAMESPACE__ . '\mappers\GeneralRubric',
+            __NAMESPACE__ . '\Mappers\GeneralRubric',
             array('id' => (int)$id)
         );
     }
@@ -57,13 +58,13 @@ class Catalog extends AbstractDomainClient
      * @param string $alias
      * @param int $regionId
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/get-by-alias
-     * @return mappers\GeneralRubric|mappers\Rubric|bool
+     * @return GeneralRubric|Rubric|bool
      */
     public function getRubricByAlias($alias, $regionId)
     {
         return $this->getSingle(
             'catalog/rubric/get',
-            __NAMESPACE__ . '\mappers\GeneralRubric',
+            __NAMESPACE__ . '\Mappers\GeneralRubric',
             array('alias' => $alias, 'region_id' => (int)$regionId)
         );
     }
@@ -73,13 +74,13 @@ class Catalog extends AbstractDomainClient
      * @param int $id
      * @param array $additionalFields
      * @link http://api.2gis.ru/doc/2.0/catalog/profile/profile
-     * @return bool
+     * @return mappers\Branch|bool
      */
     public function getBranch($id, array $additionalFields = array())
     {
         return $this->getSingle(
             'catalog/branch/get',
-            __NAMESPACE__ . '\mappers\Branch',
+            __NAMESPACE__ . '\Mappers\Branch',
             array('id' => (int)$id, 'fields' => ApiConnection::getArray($additionalFields))
         );
     }

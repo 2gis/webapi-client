@@ -1,6 +1,6 @@
 <?php
 
-namespace DGApiClient\exceptions;
+namespace DGApiClient\Exceptions;
 
 
 class ConnectionException extends \Exception

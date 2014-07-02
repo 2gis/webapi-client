@@ -2,7 +2,7 @@
 
 namespace DGApiClient;
 
-use \DGApiClient\mappers\Mapper;
+use \DGApiClient\Mappers\Mapper;
 
 abstract class AbstractDomainClient
 {

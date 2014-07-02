@@ -1,11 +1,12 @@
 <?php
 
-use \DGApiClient\mappers;
+use \DGApiClient\Mappers\GeneralRubric;
+use \DGApiClient\Mappers\Rubric;
 
 class RubricTest extends AbstractDomainTestCase {
 
     /**
-     * @return mappers\GeneralRubric|mappers\Rubric
+     * @return GeneralRubric|Rubric
      */
     private function getRandomGeneralRubric()
     {
@@ -22,7 +23,7 @@ class RubricTest extends AbstractDomainTestCase {
         $result = $this->catalog->getRubricList(1);
         $this->assertTrue(is_array($result), 'getRubricList must return array');
         foreach ($result as $value) {
-            $this->assertTrue($value instanceof mappers\GeneralRubric, 'Each value must be GeneralRubric');
+            $this->assertTrue($value instanceof GeneralRubric, 'Each value must be GeneralRubric');
         }
     }
 
@@ -34,7 +35,7 @@ class RubricTest extends AbstractDomainTestCase {
         $result = $this->catalog->getRubricList(1, $this->getRandomGeneralRubric()->id);
         $this->assertTrue(is_array($result), 'getRubricList must return array');
         foreach ($result as $value) {
-            $this->assertTrue($value instanceof mappers\Rubric, 'Each value must be GeneralRubric');
+            $this->assertTrue($value instanceof Rubric, 'Each value must be GeneralRubric');
         }
     }
 

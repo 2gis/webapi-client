@@ -1,8 +1,8 @@
 <?php
 
-namespace DGApiClient\mappers;
+namespace DGApiClient\Mappers;
 
-use DGApiClient\exceptions\Exception;
+use DGApiClient\Exceptions\Exception;
 
 abstract class Mapper
 {
@@ -29,7 +29,7 @@ abstract class Mapper
      * @param array $data
      * @param string $className
      * @return Mapper
-     * @throws \DGApiClient\exceptions\Exception
+     * @throws \DGApiClient\Exceptions\Exception
      */
     public static function factory($data, $className = __CLASS__)
     {

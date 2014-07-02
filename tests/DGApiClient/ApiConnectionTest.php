@@ -18,7 +18,7 @@ class ApiConnectionTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException DGApiClient\exceptions\ConnectionException
+     * @expectedException DGApiClient\Exceptions\ConnectionException
      * @expectedExceptionCode 403
      * @expectedExceptionMessage invalid key
      */
@@ -29,7 +29,7 @@ class ApiConnectionTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException DGApiClient\exceptions\ConnectionException
+     * @expectedException DGApiClient\Exceptions\ConnectionException
      * @expectedExceptionCode 400
      * @expectedExceptionMessage Method not found
      */
@@ -40,17 +40,17 @@ class ApiConnectionTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException DGApiClient\exceptions\ConnectionException
+     * @expectedException DGApiClient\Exceptions\ConnectionException
      * @expectedExceptionMessage Invalid response message
      */
     public function testIncorrectAnswer()
     {
-        $this->client->url = 'http://example.com';
+        $this->client->url = 'http://2gis.ru';
         $this->client->send('some');
     }
 
     /**
-     * @expectedException DGApiClient\exceptions\ConnectionException
+     * @expectedException DGApiClient\Exceptions\ConnectionException
      */
     public function testCurlError()
     {
@@ -91,7 +91,7 @@ class ApiConnectionTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException DGApiClient\exceptions\ConnectionException
+     * @expectedException DGApiClient\Exceptions\ConnectionException
      */
     public function testIncorrectFormat()
     {

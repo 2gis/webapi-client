@@ -1,6 +1,6 @@
 <?php
 
-namespace DGApiClient\mappers;
+namespace DGApiClient\Mappers;
 
 class Branch extends Mapper
 {

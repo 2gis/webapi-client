@@ -1,0 +1,36 @@
+{
+    "name": "2gis/api-client",
+    "description": "2Gis web API 2.0 client library",
+    "keywords": ["2Gis", "API"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "2GIS Ltd.",
+            "email": "api@2gis.ru",
+            "homepage": "http://api.2gis.ru/"
+        },
+        {
+            "name": "Alexey Ashurok",
+            "email": "me@aotd.ru",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "ext-curl": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.1.*",
+        "satooshi/php-coveralls": "dev-master",
+        "squizlabs/php_codesniffer": "1.*"
+    },
+   "autoload": {
+        "psr-4": {
+            "DGApiClient\\": "src/DGApiClient/"
+        }
+    },
+    "support": {
+        "email": "api@2gis.ru",
+        "wiki": "http://api.2gis.ru/doc/"
+    }
+}

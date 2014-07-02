@@ -1,0 +1,37 @@
+language: php
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+  - hhvm
+
+matrix:
+  allow_failures:
+    - php: hhvm
+
+before_script:
+  - composer self-update
+  - composer install --prefer-source
+
+script:
+  - mkdir .reports
+  # Code style
+  - php vendor/bin/phpcs ./src/DGApiClient --standard=PSR1 --encoding=utf-8 --report=summary
+  - php vendor/bin/phpcs ./src/DGApiClient --standard=PSR2 --encoding=utf-8 --report=summary
+  # PHPUnit tests
+  - php vendor/bin/phpunit --configuration tests/phpunit.xml.dist --coverage-clover=.reports/clover.xml
+
+after_success:
+  # Send cover
+  - php vendor/bin/coveralls -v
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover .reports/clover.xml
+
+git:
+  depth: 1
+
+  notifications:
+    email:
+      - a.ashurok@2gis.ru

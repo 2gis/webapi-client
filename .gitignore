@@ -1,0 +1,5 @@
+.idea
+error.log
+composer.lock
+vendor/
+.reports/

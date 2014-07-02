@@ -1,4 +1,5 @@
 .idea
+ocular.phar
 error.log
 composer.lock
 vendor/

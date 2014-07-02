@@ -4,7 +4,7 @@ PHP библиотека к API 2Гис
 [![Build Status](https://secure.travis-ci.org/2gis/webapi-client.png?branch=master)](https://travis-ci.org/2gis/webapi-client)
 [![Latest Stable Version](https://poser.pugx.org/2gis/api-client/v/stable.png)](https://packagist.org/packages/2gis/api-client)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/2gis/webapi-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/2gis/webapi-client/?branch=master)
-[![Coverage Status](https://coveralls.io/repos/2gis/webapi-client/badge.png)](https://coveralls.io/r/2gis/webapi-client)
+[![Code Coverage](https://scrutinizer-ci.com/g/2gis/webapi-client/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/2gis/webapi-client/?branch=master)
 [![License](https://poser.pugx.org/2gis/api-client/license.svg)](https://packagist.org/packages/2gis/api-client)
 
 ## Установка

@@ -25,13 +25,12 @@ script:
 
 after_success:
   # Send cover
-  - php vendor/bin/coveralls -v
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover .reports/clover.xml
 
 git:
   depth: 1
 
-  notifications:
-    email:
-      - a.ashurok@2gis.ru
+notifications:
+  email:
+    - a.ashurok@2gis.ru

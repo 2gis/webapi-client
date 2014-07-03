@@ -1,5 +1,5 @@
 <?php
 
 return array(
-    'autotestKey' => 'ruskqt2111',
+    'autotestKey' => '1',
 );

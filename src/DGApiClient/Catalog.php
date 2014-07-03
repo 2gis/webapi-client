@@ -84,4 +84,127 @@ class Catalog extends AbstractDomainClient
             array('id' => (int)$id, 'fields' => ApiConnection::getArray($additionalFields))
         );
     }
+
+    /*
+     * Поиск остановки
+     * @param string $regionId
+     * @link api.2gis.ru/doc/2.0/transport/station/search
+     * @return mappers\Station|bool
+     */
+    public function getStations($q, $regionId)
+    {
+        return $this->getList(
+            'transport/station/search',
+            __NAMESPACE__ . '\Mappers\Station',
+            array(
+                'q' => (string) $q,
+                'region_id' => (int) $regionId
+            )
+        );
+    }
+
+    /*
+     * Поиск остановки по остановочной платформе
+     * @param int $platformId
+     * @param string $type
+     * @link api.2gis.ru/doc/2.0/transport/station/get-by-platform-id
+     * @return mappers\Station|bool
+     */
+    public function getStationByPlatform($platformId, $type = 'station')
+    {
+        return $this->getSingle(
+            'transport/station/get',
+            __NAMESPACE__ . '\Mappers\Station',
+            array(
+                'type' => (int) $type,
+                'platform_id' => (int) $platformId
+            )
+        );
+    }
+
+    /*
+    * Получение заданной остановки
+    * @param int $id
+    * @param string $type
+    * @link api.2gis.ru/doc/2.0/transport/station/get
+    * @return mappers\Station|bool
+    */
+    public function getStation($id, $type = 'station')
+    {
+        return $this->getSingle(
+            'transport/station/get',
+            __NAMESPACE__ . '\Mappers\Station',
+            array(
+                'type' => (int) $type,
+                'id' => (int) $id
+            )
+        );
+    }
+
+    /*
+    * Получение информациии об остановочной платформе
+    * @param int $id
+    * @link api.2gis.ru/doc/2.0/transport/station_platform/get
+    * @return mappers\PlatformOfStation|bool
+    */
+    public function getPlatform($id)
+    {
+        return $this->getSingle(
+            'transport/station_platform/get',
+            __NAMESPACE__ . '\Mappers\PlatformOfStation',
+            array(
+                'id' => (int) $id
+            )
+        );
+    }
+
+    /*
+    * Поиск проезда на общественном транспорте
+    * @param string $start (lon, lat)
+    * @param string $end (lon, lat)
+    * @param string $routeSubtypes
+    * @param string $format
+    * @link api.2gis.ru/doc/2.0/transport/calculate/routes
+    * @return mappers\CalculateRoute|bool
+    */
+    public function getCalculateRoutes($start, $end, $routeSubtypes, $format = 'json')
+    {
+        return $this->getList(
+            'transport/calculate_routes',
+            __NAMESPACE__ . '\Mappers\CalculateRoute',
+            array(
+                'start' => (string) $start,
+                'end' => (string) $end,
+                'route_subtypes' => (string) $routeSubtypes,
+                'format' => (string) $format
+            )
+        );
+    }
+
+    /*
+    * Поиск проезда на автомобиле
+    * @param string $waypoints string|json
+    * @param string $time
+    * @param string $routingType (optimal_statistics, shortest)
+    * @param string $format
+    * @link api.2gis.ru/doc/2.0/transport/calculate/directions
+    * @return mappers\CalculateDirection|bool
+    */
+    public function getCalculateDirections($waypoints, $time = null, $routingType = 'optimal_statistics', $format = 'json')
+    {
+        if (null === $time) {
+            $time = new \DateTime();
+            $time = $time->format('w:H:i');
+        }
+        return $this->getList(
+            'transport/calculate_directions',
+            __NAMESPACE__ . '\Mappers\CalculateDirection',
+            array(
+                'waypoints' => (string) $waypoints,
+                'time' => (string) $time,
+                'routing_type' => (string) $routingType,
+                'format' => $format
+            )
+        );
+    }
 }

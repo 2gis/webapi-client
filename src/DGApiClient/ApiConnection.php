@@ -17,7 +17,7 @@ class ApiConnection
     public $key;
 
     /* @var string $url url to 2Gis API */
-    public $url = 'http://catalog.api.2gis.ru';
+    public $url = 'http://catalog.local';
 
     /* @var string $version api version */
     public $version = '2.0';

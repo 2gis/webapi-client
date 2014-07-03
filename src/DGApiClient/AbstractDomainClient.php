@@ -32,4 +32,34 @@ abstract class AbstractDomainClient
         }
         return false;
     }
+
+    /**
+     * @param string $service
+     * @param array $params
+     * @param string $mapperClass
+     * @return array |Mapper
+     */
+    public function getList($service, $mapperClass, array $params = array(), $typeItems = 'items')
+    {
+        $response = $this->client->send($service, $params);
+        return $this->getItemsOfResponse($response, $mapperClass, $typeItems);
+    }
+
+    /**
+     * @param mixed $result
+     * @param string $items
+     * @return array|Mapper[]
+     */
+    protected function getItemsOfResponse($response, $mapperClass, $items)
+    {
+        if (empty($response[$items])) {
+            return array();
+        }
+
+        $result = array();
+        foreach ($response[$items] as $value) {
+            $result[] = Mapper::factory($value, $mapperClass);
+        }
+        return $result;
+    }
 }

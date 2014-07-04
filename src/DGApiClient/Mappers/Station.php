@@ -10,7 +10,7 @@ class Station extends Mapper
     public $id;
 
     /* @var string */
-    public $region_id = '';
+    public $regionId = '';
 
     /* @var string */
     public $name;
@@ -22,10 +22,10 @@ class Station extends Mapper
     public $subtype;
 
     /* @var string */
-    public $subtype_name = '';
+    public $subtypeName = '';
 
     /* @var array */
-    public $adm_div = array();
+    public $admDiv = array();
 
     /* @var object|null  */
     public $schedule;

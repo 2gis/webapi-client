@@ -6,17 +6,14 @@ class CalculateDirection extends Mapper
 {
 
     /* @var int */
-    public $total_duration;
+    public $totalDuration;
 
     /* @var int */
-    public $transfer_count;
+    public $totalDistance;
 
     /* @var int */
-    public $crossing_count;
+    public $crossingCount;
 
     /* @var array[]object */
-    public $waypoints;
-
-    /* @var array[]object */
-    public $movements;
+    public $legs;
 }

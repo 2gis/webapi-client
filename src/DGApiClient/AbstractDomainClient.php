@@ -37,12 +37,26 @@ abstract class AbstractDomainClient
      * @param string $service
      * @param array $params
      * @param string $mapperClass
-     * @return array |Mapper
+     * @return array|Mapper
      */
     public function getList($service, $mapperClass, array $params = array(), $typeItems = 'items')
     {
         $response = $this->client->send($service, $params);
         return $this->getItemsOfResponse($response, $mapperClass, $typeItems);
+    }
+
+    /**
+     * @param string $service
+     * @param array $params
+     * @return array
+     */
+    public function getResult($service, array $params = array())
+    {
+        $response = $this->client->send($service, $params);
+        if (empty($response) || !is_array($response)) {
+            return array();
+        }
+        return $response;
     }
 
     /**

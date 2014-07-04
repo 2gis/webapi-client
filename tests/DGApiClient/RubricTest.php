@@ -21,10 +21,7 @@ class RubricTest extends AbstractDomainTestCase {
     public function testGeneralRubricList()
     {
         $result = $this->catalog->getRubricList(1);
-        $this->assertTrue(is_array($result), 'getRubricList must return array');
-        foreach ($result as $value) {
-            $this->assertTrue($value instanceof GeneralRubric, 'Each value must be GeneralRubric');
-        }
+        $this->checkList($result, '\DGApiClient\Mappers\GeneralRubric', 'getRubricList');
     }
 
     /**

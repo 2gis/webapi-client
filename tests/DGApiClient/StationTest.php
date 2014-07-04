@@ -17,12 +17,10 @@ class StationTest extends AbstractDomainTestCase {
     /* @var int id of station */
     private $stationId = '141523467371616';
 
-    public function testGetStations()
+    public function testGetStationList()
     {
-        $stations = $this->catalog->getStations($this->stationName, $this->regionId);
-        foreach ($stations as $station) {
-            $this->assertTrue($station instanceof Station);
-        }
+        $stations = $this->catalog->getStationList($this->stationName, $this->regionId);
+        $this->checkList($stations, '\DGApiClient\Mappers\Station', 'getStationList');
     }
 
     public function testGetStationByPlatform()

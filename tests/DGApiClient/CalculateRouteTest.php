@@ -13,17 +13,16 @@ class CalculateRouteTest extends AbstractDomainTestCase {
     /* @var string */
     private $calculateRouteSubtypes = 'bus, trolleybus, tram, shuttle_bus, metro';
 
-    public function testGetCalculateRoutes()
+    public function testGetCalculateRouteList()
     {
-        $routes = $this->catalog->getCalculateRoutes(
+        $routes = $this->catalog->getCalculateRouteList(
             $this->calculateRouteStart,
             $this->calculateRouteEnd,
             $this->calculateRouteSubtypes
         );
 
-        foreach ($routes as $route) {
-            $this->assertTrue($route instanceof CalculateRoute);
-        }
+        $this->checkList($routes, '\DGApiClient\Mappers\CalculateRoute', 'getCalculateRouteList');
+
     }
 }
 

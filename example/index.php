@@ -11,7 +11,7 @@ $connection = new \DGApiClient\ApiConnection(API_KEY);
 
 $catalog = new \DGApiClient\Catalog($connection);
 
-//$data = $catalog->getStations('Восход', 1);
+//$data = $catalog->getStationList('Восход', 1);
 //////
 //print_r($data);
 
@@ -19,7 +19,7 @@ $catalog = new \DGApiClient\Catalog($connection);
 //
 //print_r($data);
 
-//$data = $catalog->getCalculateRoutes(
+//$data = $catalog->getCalculateRouteList(
 //    '82.6973773218787, 54.9922473366522',
 //    '82.9477343592011, 55.0104089636166',
 //    'bus, trolleybus, tram, shuttle_bus, metro'
@@ -27,9 +27,13 @@ $catalog = new \DGApiClient\Catalog($connection);
 ////
 //print_r($data);
 
-$waypoints = '82.838287 54.96579, 82.838287 54.96579';
-$data = $catalog->getCalculateDirections($waypoints);
+//$waypoints = '82.838287 54.96579, 82.838287 54.96579';
+//$data = $catalog->getCalculateDirectionList($waypoints);
+//print_r($data);
+//$data = $catalog->getRouteListByPlatform(141420388156739);
+$data = $catalog->getRoute(141343078744431);
 print_r($data);
+
 print('it s ok' . PHP_EOL);
 
 

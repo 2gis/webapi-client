@@ -11,7 +11,7 @@ class PlatformOfStation extends Mapper
     public $geometry;
 
     /* @var array */
-    public $route_types;
+    public $routeTypes;
 
     public static function factory($data, $className = __CLASS__)
     {

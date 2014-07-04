@@ -4,15 +4,14 @@ namespace DGApiClient\Mappers;
 
 class CalculateRoute extends Mapper
 {
+    /* @var int */
+    public $totalDuration;
 
     /* @var int */
-    public $total_duration;
+    public $transferCount;
 
     /* @var int */
-    public $transfer_count;
-
-    /* @var int */
-    public $crossing_count;
+    public $crossingCount;
 
     /* @var array[]object */
     public $waypoints;

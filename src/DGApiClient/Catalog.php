@@ -190,8 +190,12 @@ class Catalog extends AbstractDomainClient
     * @link api.2gis.ru/doc/2.0/transport/calculate/directions
     * @return mappers\CalculateDirection|bool
     */
-    public function getCalculateDirectionList($waypoints, $time = null, $routingType = 'optimal_statistic', $format = 'json')
-    {
+    public function getCalculateDirectionList(
+        $waypoints,
+        $time = null,
+        $routingType = 'optimal_statistic',
+        $format = 'json'
+    ) {
         if (null === $time) {
             $time = new \DateTime();
             $time = $time->format('w:H:i');

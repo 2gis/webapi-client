@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: s.belyakov
- * Date: 7/4/14
- * Time: 10:31 AM
- */
 
 namespace DGApiClient\Mappers;
 

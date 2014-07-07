@@ -13,9 +13,9 @@ class CalculateRoute extends Mapper
     /* @var int */
     public $crossingCount;
 
-    /* @var array[]object */
+    /* @var object[] */
     public $waypoints;
 
-    /* @var array[]object */
+    /* @var object[] */
     public $movements;
 }

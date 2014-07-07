@@ -33,7 +33,7 @@ class Station extends Mapper
     /* @var array[]object  */
     public $platforms;
 
-    /* @var array[]object  */
+    /* @var object[]  */
     public $routes = array();
 
     /* @var object|null  */

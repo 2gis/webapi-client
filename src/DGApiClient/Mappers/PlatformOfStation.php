@@ -28,7 +28,7 @@ class PlatformOfStation extends Mapper
     /* @var string */
     public $subtypeName;
 
-    /* @var array[]object */
+    /* @var object[] */
     public $admDiv;
 
     /* @var array */
@@ -37,7 +37,7 @@ class PlatformOfStation extends Mapper
     /* @var array */
     public $geometry;
 
-    /* @var array[]object */
+    /* @var object[] */
     public $routes;
 
     /* @var array|Null */

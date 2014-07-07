@@ -10,6 +10,9 @@ class Branch extends Mapper
     /* @var string */
     public $name;
 
+    /* @var int */
+    public $regionId;
+
     /* @var string */
     public $regBcUrl;
 
@@ -19,8 +22,20 @@ class Branch extends Mapper
     /* @var Address */
     public $address;
 
+    /* @var Organization */
+    public $org;
+
     /* @var Rubric[] */
     public $rubrics = array();
+
+    public $reviews;
+
+    public $attributeGroups = array();
+
+    public static function factory($data, $className = __CLASS__)
+    {
+        return parent::factory($data, $className);
+    }
 
     public function setAddress($value)
     {
@@ -32,5 +47,10 @@ class Branch extends Mapper
         foreach ($values as $rubric) {
             $this->rubrics[] = Rubric::factory($rubric);
         }
+    }
+
+    public function setOrg($value)
+    {
+        $this->org = Organization::factory($value);
     }
 }

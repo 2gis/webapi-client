@@ -2,7 +2,7 @@
 
 namespace DGApiClient;
 
-use DGApiClient\Mappers\GeneralRubric;
+use DGApiClient\SearchCriteria\BranchSearchCriteria;
 use DGApiClient\Mappers\Rubric;
 
 class Catalog extends AbstractDomainClient
@@ -11,44 +11,43 @@ class Catalog extends AbstractDomainClient
     const SORT_NAME = 'name';
     const SORT_POPULARITY = 'popularity';
 
+    public static $scopes = array(
+        'none' => array(),
+        'full' => array('*'),
+    );
+
     /**
      * Поиск рубрик
      * @param int $regionId
      * @param int $parentId
      * @param string $sort
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/list
-     * @return GeneralRubric[]|Rubric[]
+     * @return Rubric[]
      */
     public function getRubricList($regionId, $parentId = 0, $sort = self::SORT_NAME)
     {
-        $response = $this->client->send('catalog/rubric/list', array(
-            'region_id' => (int)$regionId,
-            'parent_id' => (int)$parentId,
-            'sort'      => $sort,
-        ));
-
-        if (!isset($response['items'])) {
-            return array();
-        }
-
-        $result = array();
-        foreach ($response['items'] as $value) {
-            $result[] = GeneralRubric::factory($value);
-        }
-        return $result;
+        return $this->getInternalList(
+            'catalog/rubric/list',
+            __NAMESPACE__ . '\Mappers\Rubric',
+            array(
+                'region_id' => (int)$regionId,
+                'parent_id' => (int)$parentId,
+                'sort' => $sort,
+            )
+        );
     }
 
     /**
      * Получение рубрики
      * @param int $id
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/get
-     * @return GeneralRubric|Rubric|bool
+     * @return Rubric|bool
      */
     public function getRubric($id)
     {
         return $this->getSingle(
             'catalog/rubric/get',
-            __NAMESPACE__ . '\Mappers\GeneralRubric',
+            __NAMESPACE__ . '\Mappers\Rubric',
             array('id' => (int)$id)
         );
     }
@@ -58,13 +57,13 @@ class Catalog extends AbstractDomainClient
      * @param string $alias
      * @param int $regionId
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/get-by-alias
-     * @return GeneralRubric|Rubric|bool
+     * @return Rubric|bool
      */
     public function getRubricByAlias($alias, $regionId)
     {
         return $this->getSingle(
             'catalog/rubric/get',
-            __NAMESPACE__ . '\Mappers\GeneralRubric',
+            __NAMESPACE__ . '\Mappers\Rubric',
             array('alias' => $alias, 'region_id' => (int)$regionId)
         );
     }
@@ -81,7 +80,44 @@ class Catalog extends AbstractDomainClient
         return $this->getSingle(
             'catalog/branch/get',
             __NAMESPACE__ . '\Mappers\Branch',
-            array('id' => (int)$id, 'fields' => ApiConnection::getArray($additionalFields))
+            array('id' => (int)$id, 'fields' => self::getArray($additionalFields))
         );
+    }
+
+    /**
+     * Поиск филиалов организаций
+     * @param int $regionId
+     * @param BranchSearchCriteria|string[] $criteria
+     * @param int $page
+     * @param int $pageSize
+     * @param string[] $additionalFields
+     * @link http://api.2gis.ru/doc/2.0/catalog/branch/search
+     * @return mappers\Branch[]|array()
+     */
+    public function branchList(
+        $regionId,
+        $criteria = array(),
+        $page = null,
+        $pageSize = null,
+        array $additionalFields = array()
+    ) {
+        return $this->getInternalList(
+            'catalog/branch/list',
+            __NAMESPACE__ . '\Mappers\Branch',
+            array_merge(
+                $criteria instanceof BranchSearchCriteria ? $criteria->toArray() : $criteria,
+                array(
+                    'page' => $page,
+                    'page_size' => $pageSize,
+                    'fields' => self::getArray($additionalFields),
+                    'region_id' => $regionId,
+                )
+            )
+        );
+    }
+
+    public function branchSearch($query, $criteria, $page, $pageSize, array $fields = array())
+    {
+        //@TODO
     }
 }

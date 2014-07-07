@@ -2,5 +2,6 @@
 ocular.phar
 error.log
 composer.lock
+composer.phar
 vendor/
 .reports/

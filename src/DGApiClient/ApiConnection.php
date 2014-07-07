@@ -25,8 +25,8 @@ class ApiConnection
     /* @var string $format */
     protected $format = 'json';
 
-    /* @var string $language api language */
-    public $language = 'ru';
+    /* @var string $locale */
+    public $locale = 'ru_RU';
 
     /* @var int $timeout in milliseconds */
     public $timeout = 5000;
@@ -71,19 +71,16 @@ class ApiConnection
     /**
      * @param string $service
      * @param array $params
-     * @return mixed
-     * @todo: timeout exception
-     * @todo: host unreachable
+     * @return array|string
      * @throws ConnectionException
      */
     public function send($service, array $params = array())
     {
         $curl = $this->getCurl();
-        $params = array_merge(array('key' => $this->key, 'language' => $this->language), $params);
         curl_setopt(
             $this->curl,
             CURLOPT_URL,
-            $this->url . '/' . $this->version . '/' . $service . '?' . http_build_query($params)
+            $this->getRequest($service, $params)
         );
         $data = curl_exec($curl);
         if (curl_errno($curl)) {
@@ -103,6 +100,18 @@ class ApiConnection
     }
 
     /**
+     * @param string $service
+     * @param array $params
+     * @return string
+     */
+    public function getRequest($service, array $params = array())
+    {
+        $params = array_filter(array_merge(array('key' => $this->key, 'locale' => $this->locale), $params));
+        $url = $this->url . '/' . $this->version . '/' . $service . '?' . http_build_query($params);
+        return $url;
+    }
+
+    /**
      * @param string $data
      * @return mixed
      */
@@ -114,10 +123,8 @@ class ApiConnection
                 $data = preg_replace("/ ^[?\w(]+ | [)]+\s*$ /x", "", $data); //JSONP -> JSON
             case 'json':
                 return @json_decode($data, true);
-                break;
-            default: //@todo decode xml?
-                return $data;
         }
+        return $data;
     }
 
     /**
@@ -143,11 +150,6 @@ class ApiConnection
         if ($this->curl !== null) {
             unset($this->curl);
         }
-    }
-
-    public static function getArray(array $values)
-    {
-        return empty($values) ? null : implode(',', $values);
     }
 
     /**

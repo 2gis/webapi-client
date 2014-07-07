@@ -2,7 +2,6 @@
 
 namespace DGApiClient\Mappers;
 
-
 class Station extends Mapper
 {
 

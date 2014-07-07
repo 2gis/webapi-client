@@ -7,11 +7,41 @@ class PlatformOfStation extends Mapper
     /* @var int */
     public $id;
 
-    /* @var object */
-    public $geometry;
+    /* @var int */
+    public $regionId;
+
+    /* @var int */
+    public $stationId;
+
+    /* @var string */
+    public $name;
+
+    /* @var string */
+    public $type;
+
+    /* @var string */
+    public $typeName;
+
+    /* @var string */
+    public $subtype;
+
+    /* @var string */
+    public $subtypeName;
+
+    /* @var array[]object */
+    public $admDiv;
 
     /* @var array */
-    public $routeTypes;
+    public $schedule;
+
+    /* @var array */
+    public $geometry;
+
+    /* @var array[]object */
+    public $routes;
+
+    /* @var array|Null */
+    public $links;
 
     public static function factory($data, $className = __CLASS__)
     {

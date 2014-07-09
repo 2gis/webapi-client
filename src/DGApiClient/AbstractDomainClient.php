@@ -24,7 +24,7 @@ abstract class AbstractDomainClient
      * @param string $mapperClass
      * @return mixed|Mapper
      */
-    public function getSingle($service, $mapperClass, array $params = array())
+    protected function getSingle($service, $mapperClass, array $params = array())
     {
         $response = $this->client->send($service, $params);
         if (isset($response['items'][0])) {
@@ -37,9 +37,10 @@ abstract class AbstractDomainClient
      * @param string $service
      * @param array $params
      * @param string $mapperClass
-     * @return array|Mapper
+     * @param string $typeItems
+     * @return array|Mapper[]
      */
-    public function getList($service, $mapperClass, array $params = array(), $typeItems = 'items')
+    protected function getInternalList($service, $mapperClass, array $params = array(), $typeItems = 'items')
     {
         $response = $this->client->send($service, $params);
         return $this->getItemsOfResponse($response, $mapperClass, $typeItems);
@@ -60,8 +61,10 @@ abstract class AbstractDomainClient
     }
 
     /**
-     * @param mixed $result
+     * @param array $response
+     * @param string $mapperClass
      * @param string $items
+     * @throws Exceptions\Exception
      * @return array|Mapper[]
      */
     protected function getItemsOfResponse($response, $mapperClass, $items)
@@ -72,8 +75,15 @@ abstract class AbstractDomainClient
 
         $result = array();
         foreach ($response[$items] as $value) {
-            $result[] = Mapper::factory($value, $mapperClass);
+            /* @var Mapper $mapper */
+            $mapper = new $mapperClass();
+            $result[] = $mapper->populate($value);
         }
         return $result;
+    }
+
+    public static function getArray(array $values)
+    {
+        return empty($values) ? null : implode(',', $values);
     }
 }

@@ -2,7 +2,7 @@
 
 use \DGApiClient\Mappers\CalculateRoute;
 
-class CalculateRouteTest extends AbstractDomainTestCase {
+class CalculateRouteTest extends TransportDomainTestCase {
 
     /* @var string */
     private $calculateRouteStart = '82.6973773218787, 54.9922473366522';
@@ -15,7 +15,7 @@ class CalculateRouteTest extends AbstractDomainTestCase {
 
     public function testGetCalculateRouteList()
     {
-        $routes = $this->catalog->getCalculateRouteList(
+        $routes = $this->transport->getCalculateRouteList(
             $this->calculateRouteStart,
             $this->calculateRouteEnd,
             $this->calculateRouteSubtypes

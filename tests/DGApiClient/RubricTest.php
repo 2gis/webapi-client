@@ -1,12 +1,27 @@
 <?php
 
-use \DGApiClient\Mappers\GeneralRubric;
 use \DGApiClient\Mappers\Rubric;
+use \DGApiClient\Catalog;
 
 class RubricTest extends AbstractDomainTestCase {
 
+    /* @var Catalog */
+    public $catalog;
+
+    public function setUp()
+    {
+        parent::setUp();
+        $this->catalog = new Catalog($this->client);
+    }
+
+    public function tearDown()
+    {
+        parent::tearDown();
+        unset($this->catalog);
+    }
+
     /**
-     * @return GeneralRubric|Rubric
+     * @return Rubric
      */
     private function getRandomGeneralRubric()
     {
@@ -21,7 +36,11 @@ class RubricTest extends AbstractDomainTestCase {
     public function testGeneralRubricList()
     {
         $result = $this->catalog->getRubricList(1);
-        $this->checkList($result, '\DGApiClient\Mappers\GeneralRubric', 'getRubricList');
+        $this->assertTrue(is_array($result), 'getRubricList must return array');
+        foreach ($result as $value) {
+            $this->assertTrue($value instanceof Rubric, 'Each value must be instance of Rubric');
+            $this->assertEquals(Rubric::GENERAL_RUBRIC, $value->type);
+        }
     }
 
     /**
@@ -32,7 +51,8 @@ class RubricTest extends AbstractDomainTestCase {
         $result = $this->catalog->getRubricList(1, $this->getRandomGeneralRubric()->id);
         $this->assertTrue(is_array($result), 'getRubricList must return array');
         foreach ($result as $value) {
-            $this->assertTrue($value instanceof Rubric, 'Each value must be GeneralRubric');
+            $this->assertTrue($value instanceof Rubric, 'Each value must be instance of Rubric');
+            $this->assertEquals(Rubric::SUB_RUBRIC, $value->type);
         }
     }
 

@@ -2,40 +2,40 @@
 
 use \DGApiClient\Mappers\CalculateDirection;
 
-class CalculateDirectionTest extends AbstractDomainTestCase {
+class CalculateDirectionTest extends TransportDomainTestCase {
 
     /* @var string */
-    private $waypoints = '82.838287 54.96579,82.838287 54.86579';
+    private $wayPoints = '82.838287 54.96579,82.838287 54.86579';
 
     /* @var string */
-    private $waypointsWithSpaces = '82.838287   54.96579,    82.838287   54.86579';
+    private $wayPointsWithSpaces = '82.838287   54.96579,    82.838287   54.86579';
 
     /* @var string*/
     private $service =  'transport/calculate_directions';
 
     public function testGetCalculateDirectionList()
     {
-        $directions = $this->catalog->getCalculateDirectionList($this->waypoints);
+        $directions = $this->transport->getCalculateDirectionList($this->wayPoints);
         $this->checkList($directions, '\DGApiClient\Mappers\CalculateDirection', 'getCalculateDirectionList');
     }
 
     public function testGetCalculateDirectionsWithSpaces()
     {
-        $directions = $this->catalog->getCalculateDirectionList($this->waypointsWithSpaces);
+        $directions = $this->transport->getCalculateDirectionList($this->wayPointsWithSpaces);
         $this->checkList($directions, '\DGApiClient\Mappers\CalculateDirection', 'getCalculateDirectionList');
     }
 
-    public function testGetCalculateDirectionsWaipoints()
+    public function testGetCalculateDirectionsWayPoints()
     {
-        $result = $this->catalog->getResult($this->service, array(
-            'waypoints' => $this->waypoints
+        $result = $this->transport->getResult($this->service, array(
+            'waypoints' => $this->wayPoints
         ));
 
         $this->assertTrue((!empty($result['waypoints'])));
     }
 
     /*
-     * @brief check items on instanseof CalculateDirection
+     * @brief check items on instance of CalculateDirection
      */
     protected function checkDirectionItems($directions)
     {

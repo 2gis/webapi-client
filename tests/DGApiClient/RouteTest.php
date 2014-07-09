@@ -1,6 +1,6 @@
 <?php
 
-class RouteTest extends AbstractDomainTestCase {
+class RouteTest extends TransportDomainTestCase {
 
     /* @var int id of platform */
     private $platformId = '141420388156739';
@@ -28,20 +28,20 @@ class RouteTest extends AbstractDomainTestCase {
 
     public function testGetRouteList()
     {
-        $routes = $this->catalog->getRouteList($this->regionId, $this->routeName, $this->routeType, $this->routePage,
+        $routes = $this->transport->getRouteList($this->regionId, $this->routeName, $this->routeType, $this->routePage,
             $this->routePageSize, $this->routeFields);
         $this->checkList($routes, '\DGApiClient\Mappers\Route', 'getRouteList');
     }
 
     public function testGetRouteListByPlatform()
     {
-        $routes = $this->catalog->getRouteListByPlatform($this->platformId, $this->routeFields);
+        $routes = $this->transport->getRouteListByPlatform($this->platformId, $this->routeFields);
         $this->checkList($routes, '\DGApiClient\Mappers\Route', 'getRouteList');
     }
 
     public function testGetRoute()
     {
-        $route = $this->catalog->getRoute($this->routeId, $this->routeFields);
+        $route = $this->transport->getRoute($this->routeId, $this->routeFields);
         $this->assertTrue($route instanceof \DGApiClient\Mappers\Route);
     }
 }

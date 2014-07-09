@@ -10,6 +10,12 @@ class Organization extends Mapper
     /* @var string */
     public $name;
 
+    /**
+     * @param array $data
+     * @param string $className
+     * @return Organization
+     * @throws \DGApiClient\Exceptions\Exception
+     */
     public static function factory($data, $className = __CLASS__)
     {
         return parent::factory($data, $className);

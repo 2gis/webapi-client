@@ -35,6 +35,12 @@ class Rubric extends Mapper
     /* @var string $kind */
     public $kind;
 
+    /**
+     * @param array $data
+     * @param string $className
+     * @return Rubric
+     * @throws \DGApiClient\Exceptions\Exception
+     */
     public static function factory($data, $className = __CLASS__)
     {
         return parent::factory($data, $className);

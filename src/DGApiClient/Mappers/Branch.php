@@ -33,6 +33,12 @@ class Branch extends Mapper
 
     public $attributeGroups = array();
 
+    /**
+     * @param array $data
+     * @param string $className
+     * @return Branch
+     * @throws \DGApiClient\Exceptions\Exception
+     */
     public static function factory($data, $className = __CLASS__)
     {
         return parent::factory($data, $className);

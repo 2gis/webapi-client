@@ -28,7 +28,7 @@ abstract class AbstractSearchCriteria implements \ArrayAccess
      */
     public function offsetExists($attribute)
     {
-        return array_key_exists($attribute, $this->attributeValidators);
+        return array_key_exists($attribute, $this->allowedAttributes);
     }
 
     /**

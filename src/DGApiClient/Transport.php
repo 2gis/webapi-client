@@ -9,6 +9,7 @@ class Transport extends AbstractDomainClient
 
     /**
      * Поиск остановки
+     * @param string $q
      * @param string $regionId
      * @link http://api.2gis.ru/doc/2.0/transport/station/search
      * @return mappers\Station|bool

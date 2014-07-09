@@ -16,8 +16,8 @@ class RegionTest extends AbstractDomainTestCase {
 
     public function tearDown()
     {
-        parent::tearDown();
         unset($this->region);
+        parent::tearDown();
     }
 
     public function testRegionList()

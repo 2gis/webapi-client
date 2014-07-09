@@ -18,4 +18,13 @@ class AbstractDomainTestCase extends \PHPUnit_Framework_TestCase {
         unset($this->client);
     }
 
+    public function checkList($values, $mapperClass, $methodName)
+    {
+        $this->assertTrue(is_array($values), "{$methodName} must return array");
+
+        foreach ($values as $value) {
+            $this->assertTrue($value instanceof $mapperClass, 'Each value must be Route');
+        }
+    }
+
 } 

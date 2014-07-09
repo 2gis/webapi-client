@@ -7,6 +7,8 @@ abstract class AbstractSearchCriteria implements \ArrayAccess
 
     protected $attributes = array();
 
+    protected $allowedAttributes = array();
+
     public function __construct(array $values = array())
     {
         foreach ($values as $key => $value) {
@@ -26,7 +28,7 @@ abstract class AbstractSearchCriteria implements \ArrayAccess
      */
     public function offsetExists($attribute)
     {
-        return array_key_exists($attribute, $this->attributeValidators);
+        return array_key_exists($attribute, $this->allowedAttributes);
     }
 
     /**
@@ -39,11 +41,6 @@ abstract class AbstractSearchCriteria implements \ArrayAccess
         return $this->attributes[$attribute];
     }
 
-    public function __get($attribute)
-    {
-
-    }
-
     /**
      * @link http://php.net/manual/en/arrayaccess.offsetset.php
      * @param mixed $attribute
@@ -52,7 +49,7 @@ abstract class AbstractSearchCriteria implements \ArrayAccess
      */
     public function offsetSet($attribute, $value)
     {
-        if (array_key_exists($attribute, $this->attributeValidators)) {
+        if (array_key_exists($attribute, $this->allowedAttributes)) {
             $this->attributes[$attribute] = $value;
         }
     }

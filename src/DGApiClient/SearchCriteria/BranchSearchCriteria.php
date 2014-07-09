@@ -20,7 +20,7 @@ class BranchSearchCriteria extends AbstractSearchCriteria
     const SORT_POPULARITY = 'popularity';
     const SORT_BOUND = 'bound';
 
-    protected $attributeValidators = array(
+    protected $allowedAttributes = array(
         'rubric_id',
         'region_id',
         'sort',

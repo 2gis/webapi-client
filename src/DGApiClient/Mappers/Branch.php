@@ -28,10 +28,17 @@ class Branch extends Mapper
     /* @var Rubric[] */
     public $rubrics = array();
 
+    /* @var int */
     public $reviews;
 
     public $attributeGroups = array();
 
+    /**
+     * @param array $data
+     * @param string $className
+     * @return Branch
+     * @throws \DGApiClient\Exceptions\Exception
+     */
     public static function factory($data, $className = __CLASS__)
     {
         return parent::factory($data, $className);

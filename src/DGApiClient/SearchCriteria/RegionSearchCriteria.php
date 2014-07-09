@@ -12,7 +12,7 @@ namespace DGApiClient\SearchCriteria;
 class RegionSearchCriteria extends AbstractSearchCriteria
 {
 
-    protected $attributeValidators = array(
+    protected $allowedAttributes = array(
         'lang',
         'locale_filter',
         'country_code_filter',

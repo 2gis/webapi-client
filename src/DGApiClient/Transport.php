@@ -38,7 +38,7 @@ class Transport extends AbstractDomainClient
             'transport/station/get',
             __NAMESPACE__ . '\Mappers\Station',
             array(
-                'type' => (int)$type,
+                'type' => (string)$type,
                 'platform_id' => (int)$platformId
             )
         );
@@ -57,7 +57,7 @@ class Transport extends AbstractDomainClient
             'transport/station/get',
             __NAMESPACE__ . '\Mappers\Station',
             array(
-                'type' => (int)$type,
+                'type' => (string)$type,
                 'id' => (int)$id
             )
         );

@@ -27,4 +27,8 @@ class BranchTest extends AbstractDomainTestCase {
         $this->assertTrue($branch instanceof Mappers\Branch);
     }
 
+    public function testSearch()
+    {
+    }
+
 }

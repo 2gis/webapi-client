@@ -91,7 +91,7 @@ class Catalog extends AbstractDomainClient
      * @param int $page
      * @param int $pageSize
      * @param string[] $additionalFields
-     * @link http://api.2gis.ru/doc/2.0/catalog/branch/search
+     * @link http://api.2gis.ru/doc/2.0/catalog/branch/list-by-rubric
      * @return mappers\Branch[]|array()
      */
     public function branchList(
@@ -116,8 +116,34 @@ class Catalog extends AbstractDomainClient
         );
     }
 
-    public function branchSearch($query, $criteria, $page, $pageSize, array $fields = array())
-    {
-        //@TODO
+    /**
+     * @param string $query
+     * @param BranchSearchCriteria|string[] $criteria
+     * @param int $page
+     * @param int $pageSize
+     * @param array $additionalFields
+     * @link http://api.2gis.ru/doc/2.0/catalog/branch/search
+     * @return mappers\Branch[]|array()
+     */
+    public function branchSearch(
+        $query,
+        $criteria,
+        $page = null,
+        $pageSize = null,
+        array $additionalFields = array()
+    ) {
+        return $this->getInternalList(
+            'catalog/branch/list',
+            __NAMESPACE__ . '\Mappers\Branch',
+            array_merge(
+                $criteria instanceof BranchSearchCriteria ? $criteria->toArray() : $criteria,
+                array(
+                    'q'     => $query,
+                    'page'  => $page,
+                    'page_size' => $pageSize,
+                    'fields' => self::getArray($additionalFields),
+                )
+            )
+        );
     }
 }

@@ -28,7 +28,7 @@ class Branch extends Mapper
     /* @var Rubric[] */
     public $rubrics = array();
 
-    /* @var int */
+    /* @var array */
     public $reviews;
 
     public $attributeGroups = array();

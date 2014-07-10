@@ -2,23 +2,102 @@
 
 namespace DGApiClient\SearchCriteria;
 
-abstract class AbstractSearchCriteria implements \ArrayAccess
+use DGApiClient\Exceptions\SearchCriteriaException;
+
+abstract class AbstractSearchCriteria implements \ArrayAccess, \Countable, \Serializable
 {
 
     protected $attributes = array();
 
     protected $allowedAttributes = array();
 
+    protected $requiredAttributes = array();
+
+    /**
+     * @param array $values
+     */
     public function __construct(array $values = array())
     {
+        foreach ($this->requiredAttributes as $value) {
+            if (!in_array($value, $this->allowedAttributes)) {
+                $this->allowedAttributes[] = $value;
+            }
+        }
         foreach ($values as $key => $value) {
             $this->offsetSet($key, $value);
         }
     }
 
+    /**
+     * @return array
+     * @throws SearchCriteriaException
+     */
     public function toArray()
     {
-        return array_filter($this->attributes);
+        if (($missed = $this->validateRequired()) !== array()) {
+            throw SearchCriteriaException::create($missed);
+        }
+        $result = $this->attributes;
+        // @todo для каждого поля allowedAttributes
+        array_walk($result, function (&$item) {
+            if (is_array($item)) {
+                $item = implode(',', $item);
+            }
+        });
+        return $result;
+    }
+
+    /**
+     * @return string
+     */
+    public function serialize()
+    {
+        return serialize($this->attributes);
+    }
+
+    /**
+     * @param string $data
+     */
+    public function unserialize($data)
+    {
+        $this->attributes = unserialize($data);
+    }
+
+    public function __invoke()
+    {
+        return $this->toArray();
+    }
+
+    public function __set($name , $value)
+    {
+        if ($this->offsetExists($name)) {
+            $this->offsetSet($name, $value);
+        } else {
+            throw new \InvalidArgumentException("Argument $name not exists");
+        }
+    }
+
+    public function __get($name)
+    {
+        if ($this->offsetExists($name)) {
+            return $this->offsetGet($name);
+        } else {
+            throw new \InvalidArgumentException("Argument $name not exists");
+        }
+    }
+
+    /**
+     * @return array missed variables
+     */
+    private function validateRequired()
+    {
+        $missed = array();
+        foreach ($this->requiredAttributes as $key) {
+            if (empty($this->attributes[$key])) {
+                $missed[] = $key;
+            }
+        }
+        return $missed;
     }
 
     /**
@@ -28,7 +107,7 @@ abstract class AbstractSearchCriteria implements \ArrayAccess
      */
     public function offsetExists($attribute)
     {
-        return array_key_exists($attribute, $this->allowedAttributes);
+        return in_array($attribute, $this->allowedAttributes);
     }
 
     /**
@@ -49,7 +128,7 @@ abstract class AbstractSearchCriteria implements \ArrayAccess
      */
     public function offsetSet($attribute, $value)
     {
-        if (array_key_exists($attribute, $this->allowedAttributes)) {
+        if (in_array($attribute, $this->allowedAttributes)) {
             $this->attributes[$attribute] = $value;
         }
     }
@@ -62,5 +141,37 @@ abstract class AbstractSearchCriteria implements \ArrayAccess
     public function offsetUnset($offset)
     {
         unset($this->attributes[$offset]);
+    }
+
+    /**
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->attributes);
+    }
+
+    /**
+     * @param float $lon
+     * @param float $lat
+     * @return string
+     */
+    public static function point($lon, $lat)
+    {
+        return $lon . ',' . $lat;
+    }
+
+    /**
+     * @param string $attr
+     * @return float[]
+     */
+    public function getPoint($attr = 'point')
+    {
+        $point = $this->offsetGet($attr);
+        if (!empty($point)) {
+            return explode(',', $point);
+        } else {
+            return array(null, null);
+        }
     }
 }

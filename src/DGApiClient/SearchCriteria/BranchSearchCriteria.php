@@ -4,13 +4,20 @@ namespace DGApiClient\SearchCriteria;
 
 /**
  * Class BranchSearchCriteria
- * @property int $rubric_id
- * @property int $region_id
+ * @property int $work_time
  * @property string $sort
- * @property string $sort_point
+ * @property bool $has_reviews
+ * @property bool $has_photos
+ * @property bool $has_site
+ * @property bool $has_ads
+ * @property bool $has_rating
+ * @property int|int[] $rubric_id
+ * @property int|int[] $city_id
+ * @property int|int[] $district_id
+ * @property int|int[] $building_id
  * @package DGApiClient\SearchCriteria
  */
-class BranchSearchCriteria extends AbstractSearchCriteria
+abstract class BranchSearchCriteria extends AbstractSearchCriteria
 {
 
     const SORT_RELEVANCE = 'relevance';
@@ -18,22 +25,17 @@ class BranchSearchCriteria extends AbstractSearchCriteria
     const SORT_RATING = 'rating';
     const SORT_CREATION_TIME = 'creation_time';
     const SORT_POPULARITY = 'popularity';
-    const SORT_BOUND = 'bound';
 
+    // @todo branch additional attributes http://api.2gis.ru/doc/2.0/catalog/branch/attributes
     protected $allowedAttributes = array(
-        'rubric_id',
-        'region_id',
-        'sort',
-        'sort_point',
-        'point1',
-        'point2',
-
         'work_time',
+        'sort',
         'has_reviews',
         'has_photos',
         'has_site',
         'has_ads',
         'has_rating',
+        'rubric_id',
         'city_id',
         'district_id',
         'building_id',

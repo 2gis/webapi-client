@@ -2,7 +2,6 @@
 
 namespace DGApiClient\Exceptions;
 
-
 class ConnectionException extends \Exception
 {
 

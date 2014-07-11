@@ -57,7 +57,7 @@ class RegionTest extends AbstractDomainTestCase {
         $this->assertTrue($result instanceof RegionMapper, 'Returned value must be instance of Mapper\Region');
     }
 
-    public function search()
+    public function testSearch()
     {
         $result = $this->region->search('Ново');
         $this->assertTrue(is_array($result), 'getList must return array');

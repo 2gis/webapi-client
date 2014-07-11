@@ -105,6 +105,20 @@ class Transport extends AbstractDomainClient
     }
 
     /**
+     * @param string $service
+     * @param array $params
+     * @return array
+     */
+    public function getResult($service, array $params = array())
+    {
+        $response = $this->client->send($service, $params);
+        if (empty($response) || !is_array($response)) {
+            return array();
+        }
+        return $response;
+    }
+
+    /**
      * Поиск проезда на автомобиле
      * @param string $waypoints string|json
      * @param string $time

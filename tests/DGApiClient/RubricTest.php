@@ -63,6 +63,19 @@ class RubricTest extends AbstractDomainTestCase {
         );
     }
 
+    public function testGetRubric()
+    {
+        $result = $this->catalog->getRubric($this->getRandomGeneralRubric()->id);
+        $this->assertTrue($result instanceof Rubric);
+    }
+
+    public function testGetRubricByAlias()
+    {
+        $name = 'avtozapchasti_dlya_inomarok';
+        $result = $this->catalog->getRubricByAlias($name, 1);
+        $this->assertTrue($result instanceof Rubric);
+    }
+
     public function testRubricListBadRegionId()
     {
         $this->assertEmpty(

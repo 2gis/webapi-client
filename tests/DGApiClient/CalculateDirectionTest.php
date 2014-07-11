@@ -31,7 +31,7 @@ class CalculateDirectionTest extends TransportDomainTestCase {
             'waypoints' => $this->wayPoints
         ));
 
-        $this->assertTrue((!empty($result['waypoints'])));
+        $this->assertNotEmpty($result['waypoints']);
     }
 
     /*

@@ -49,6 +49,15 @@ class ApiConnectionTest extends \PHPUnit_Framework_TestCase {
         $this->client->send('some');
     }
 
+    public function testSilentError()
+    {
+        $this->client->raiseException = false;
+        $this->client->url = 'http://2gis.ru';
+        $result = $this->client->send('some');
+        $this->client->raiseException = true;
+        $this->assertEmpty($result);
+    }
+
     /**
      * @expectedException DGApiClient\Exceptions\ConnectionException
      */

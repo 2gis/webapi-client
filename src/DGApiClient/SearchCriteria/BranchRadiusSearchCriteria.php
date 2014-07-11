@@ -4,7 +4,7 @@ namespace DGApiClient\SearchCriteria;
 
 /**
  * Class BranchRadiusSearchCriteria
- * @property string $point
+ * @property string|int[] $point
  * @property int $radius
  * @package DGApiClient\SearchCriteria
  */
@@ -17,9 +17,9 @@ class BranchRadiusSearchCriteria extends BranchSearchCriteria
 
     public function __construct(array $values = array())
     {
-        $this->allowedAttributes += array(
-            'point',
-            'radius',
+        $this->allowedAttributes = array_merge(
+            $this->allowedAttributes,
+            array('point', 'radius')
         );
         return parent::__construct($values);
     }

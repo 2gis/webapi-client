@@ -38,13 +38,19 @@ abstract class AbstractSearchCriteria implements \ArrayAccess, \Countable, \Seri
             throw SearchCriteriaException::create($missed);
         }
         $result = $this->attributes;
-        // @todo для каждого поля allowedAttributes
         array_walk($result, function (&$item) {
             if (is_array($item)) {
                 $item = implode(',', $item);
+            } elseif (is_bool($item)) {
+                $item = $item ? 'true' : 'false';
             }
         });
         return $result;
+    }
+
+    public function __toString()
+    {
+        return http_build_query($this->toArray());
     }
 
     /**
@@ -68,7 +74,11 @@ abstract class AbstractSearchCriteria implements \ArrayAccess, \Countable, \Seri
         return $this->toArray();
     }
 
-    public function __set($name , $value)
+    /**
+     * @param string $name
+     * @param mixed $value
+     */
+    public function __set($name, $value)
     {
         if ($this->offsetExists($name)) {
             $this->offsetSet($name, $value);
@@ -77,6 +87,10 @@ abstract class AbstractSearchCriteria implements \ArrayAccess, \Countable, \Seri
         }
     }
 
+    /**
+     * @param string $name
+     * @return mixed Can return all value types.
+     */
     public function __get($name)
     {
         if ($this->offsetExists($name)) {
@@ -149,29 +163,5 @@ abstract class AbstractSearchCriteria implements \ArrayAccess, \Countable, \Seri
     public function count()
     {
         return count($this->attributes);
-    }
-
-    /**
-     * @param float $lon
-     * @param float $lat
-     * @return string
-     */
-    public static function point($lon, $lat)
-    {
-        return $lon . ',' . $lat;
-    }
-
-    /**
-     * @param string $attr
-     * @return float[]
-     */
-    public function getPoint($attr = 'point')
-    {
-        $point = $this->offsetGet($attr);
-        if (!empty($point)) {
-            return explode(',', $point);
-        } else {
-            return array(null, null);
-        }
     }
 }

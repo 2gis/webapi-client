@@ -2,7 +2,7 @@
 
 namespace DGApiClient\Exceptions;
 
-class ConnectionException extends \Exception
+class ConnectionException extends Exception
 {
 
     /* @var string $type */
@@ -18,4 +18,10 @@ class ConnectionException extends \Exception
         $this->type = $type;
         parent::__construct($message, $code, $previous);
     }
+
+    public function __toString()
+    {
+        return __CLASS__ . ": [{$this->code}]: {$this->type} {$this->message} ";
+    }
+
 }

@@ -38,7 +38,7 @@ class BranchBoundSearchCriteria extends BranchSearchCriteria
      */
     public function setPoint1($lon, $lat)
     {
-        $this->offsetSet('point1', self::point($lon, $lat));
+        $this->offsetSet('point1', array($lon, $lat));
         return $this;
     }
 
@@ -49,23 +49,7 @@ class BranchBoundSearchCriteria extends BranchSearchCriteria
      */
     public function setPoint2($lon, $lat)
     {
-        $this->offsetSet('point2', self::point($lon, $lat));
+        $this->offsetSet('point2', array($lon, $lat));
         return $this;
-    }
-
-    /**
-     * @return float[]
-     */
-    public function getPoint1()
-    {
-        return $this->getPoint('point1');
-    }
-
-    /**
-     * @return float[]
-     */
-    public function getPoint2()
-    {
-        return $this->getPoint('point2');
     }
 }

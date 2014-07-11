@@ -5,8 +5,8 @@ namespace DGApiClient\SearchCriteria;
 /**
  * Class RegionSearchCriteria
  * @property string $lang
- * @property string $locale_filter
- * @property string $country_code_filter
+ * @property string|string[] $locale_filter
+ * @property string|string[] $country_code_filter
  * @package DGApiClient\SearchCriteria
  */
 class RegionSearchCriteria extends AbstractSearchCriteria

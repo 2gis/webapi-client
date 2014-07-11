@@ -21,9 +21,7 @@ class BranchBuildingListCriteria extends BranchSearchCriteria
 
     public function __construct(array $values = array())
     {
-        $this->allowedAttributes += array(
-            'servicing',
-        );
+        $this->allowedAttributes = array_merge($this->allowedAttributes, array('servicing'));
         return parent::__construct($values);
     }
 }

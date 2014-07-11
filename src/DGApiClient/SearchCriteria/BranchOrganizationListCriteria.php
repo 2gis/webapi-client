@@ -3,7 +3,10 @@
 namespace DGApiClient\SearchCriteria;
 
 /**
- * Class BranchRubricListCriteria
+ * Class BranchOrganizationListCriteria
+ * @property int $org_id
+ * @property string|int[] $point
+ * @property int $radius
  */
 class BranchOrganizationListCriteria extends BranchSearchCriteria
 {
@@ -14,10 +17,11 @@ class BranchOrganizationListCriteria extends BranchSearchCriteria
 
     public function __construct(array $values = array())
     {
-        $this->allowedAttributes += array(
-            'point',
-            'radius',
+        $this->allowedAttributes = array_merge(
+            $this->allowedAttributes,
+            array('point', 'radius')
         );
+
         return parent::__construct($values);
     }
 
@@ -33,7 +37,7 @@ class BranchOrganizationListCriteria extends BranchSearchCriteria
      */
     public function setPoint($lon, $lat)
     {
-        $this->offsetSet('point', self::point($lon, $lat));
+        $this->offsetSet('point', array($lon, $lat));
         return $this;
     }
 }

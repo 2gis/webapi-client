@@ -86,7 +86,6 @@ class Catalog extends AbstractDomainClient
 
     /**
      * Поиск филиалов организаций
-     * @param int $regionId
      * @param BranchSearchCriteria|string[] $criteria
      * @param int $page
      * @param int $pageSize
@@ -95,7 +94,6 @@ class Catalog extends AbstractDomainClient
      * @return mappers\Branch[]|array()
      */
     public function branchList(
-        $regionId,
         $criteria = array(),
         $page = null,
         $pageSize = null,
@@ -110,7 +108,6 @@ class Catalog extends AbstractDomainClient
                     'page' => $page,
                     'page_size' => $pageSize,
                     'fields' => self::getArray($additionalFields),
-                    'region_id' => $regionId,
                 )
             )
         );
@@ -133,7 +130,7 @@ class Catalog extends AbstractDomainClient
         array $additionalFields = array()
     ) {
         return $this->getInternalList(
-            'catalog/branch/list',
+            'catalog/branch/search',
             __NAMESPACE__ . '\Mappers\Branch',
             array_merge(
                 $criteria instanceof BranchSearchCriteria ? $criteria->toArray() : $criteria,

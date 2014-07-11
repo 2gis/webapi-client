@@ -17,7 +17,7 @@ namespace DGApiClient\SearchCriteria;
  * @property int|int[] $building_id
  * @package DGApiClient\SearchCriteria
  */
-abstract class BranchSearchCriteria extends AbstractSearchCriteria
+class BranchSearchCriteria extends AbstractSearchCriteria
 {
 
     const SORT_RELEVANCE = 'relevance';
@@ -26,7 +26,7 @@ abstract class BranchSearchCriteria extends AbstractSearchCriteria
     const SORT_CREATION_TIME = 'creation_time';
     const SORT_POPULARITY = 'popularity';
 
-    // @todo branch additional attributes http://api.2gis.ru/doc/2.0/catalog/branch/attributes
+    // @todo add branch additional attributes http://api.2gis.ru/doc/2.0/catalog/branch/attributes
     protected $allowedAttributes = array(
         'work_time',
         'sort',

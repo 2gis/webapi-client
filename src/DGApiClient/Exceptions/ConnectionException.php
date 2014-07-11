@@ -23,5 +23,4 @@ class ConnectionException extends Exception
     {
         return __CLASS__ . ": [{$this->code}]: {$this->type} {$this->message} ";
     }
-
 }

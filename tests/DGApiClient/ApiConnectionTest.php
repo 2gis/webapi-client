@@ -31,11 +31,10 @@ class ApiConnectionTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException DGApiClient\Exceptions\ConnectionException
      * @expectedExceptionCode 400
-     * @expectedExceptionMessage Method not found
+     * @expectedExceptionMessage Unknown API method
      */
     public function testWrongApiMethod()
     {
-        $this->markTestSkipped('This test has been skipped due WAPI-11077');
         $this->client->send('some/strange');
     }
 

@@ -20,12 +20,13 @@
         "ext-curl": "*"
     },
     "require-dev": {
+        "psr/log": "dev-master",
         "phpunit/phpunit": "4.1.*",
         "squizlabs/php_codesniffer": "1.*"
     },
    "autoload": {
         "psr-4": {
-            "DGApiClient\\": "src/DGApiClient/"
+            "DGApiClient\\": "src/DGApiClient"
         }
     },
     "support": {

@@ -11,7 +11,8 @@ use DGApiClient\Exceptions\ConnectionException;
 class ApiConnection
 {
 
-    //@todo: PSR-3 logger
+    /* @var \Psr\Log\LoggerInterface */
+    private $logger;
 
     /* @var string $key API access key */
     public $key;
@@ -34,15 +35,35 @@ class ApiConnection
     /* @var resource $curl */
     protected $curl;
 
-    /* @var bool $raiseException */
+    /**
+     * Throw exception or store it into $lastError variable
+     * @var bool $raiseException
+     */
     public $raiseException = true;
 
     /**
-     * @param string $key
+     * This variable contains exception class if $raiseException is false.
+     * @var \Exception
      */
-    public function __construct($key)
+    protected $lastError;
+
+    /**
+     * @param string $key
+     * @param \Psr\Log\LoggerInterface $logger
+     */
+    public function __construct($key, $logger = null)
     {
         $this->key = $key;
+        $this->logger = $logger;
+    }
+
+    /**
+     * Returns last Exception if $raiseException is false
+     * @return \Exception
+     */
+    public function getLastError()
+    {
+        return $this->lastError;
     }
 
     /**
@@ -96,6 +117,7 @@ class ApiConnection
         if (!$response || !isset($response['meta'], $response['result'])) {
             return $this->raiseException("Invalid response message");
         }
+        $this->lastError = null;
         return $response['result'];
     }
 
@@ -108,6 +130,9 @@ class ApiConnection
     {
         $params = array_filter(array_merge(array('key' => $this->key, 'locale' => $this->locale), $params));
         $url = $this->url . '/' . $this->version . '/' . $service . '?' . http_build_query($params);
+        if ($this->logger) {
+            $this->logger->info($url);
+        }
         return $url;
     }
 
@@ -162,8 +187,14 @@ class ApiConnection
      */
     protected function raiseException($message = "", $code = 0, \Exception $previous = null, $type = "")
     {
+        $exception = new ConnectionException($message, $code, $previous, $type);
+        if ($this->logger) {
+            $this->logger->error("[$code]: $type $message", array('exception' => $exception));
+        }
         if ($this->raiseException) {
-            throw new ConnectionException($message, $code, $previous, $type);
+            throw $exception;
+        } else {
+            $this->lastError = $exception;
         }
         return false;
     }
@@ -176,14 +207,11 @@ class ApiConnection
      */
     protected function metaException(array $meta, $defaultMessage = "")
     {
-        if ($this->raiseException) {
-            throw new ConnectionException(
-                isset($meta['error']['message']) ? $meta['error']['message'] : $defaultMessage,
-                $meta['code'],
-                null,
-                isset($meta['error']['type']) ? $meta['error']['type'] : ""
-            );
-        }
-        return false;
+        return $this->raiseException(
+            isset($meta['error']['message']) ? $meta['error']['message'] : $defaultMessage,
+            isset($meta['code']) ? $meta['code'] : 0,
+            null,
+            isset($meta['error']['type']) ? $meta['error']['type'] : ""
+        );
     }
 }

@@ -2,6 +2,7 @@
 
 namespace DGApiClient;
 
+use DGApiClient\Exceptions\Exception;
 use \DGApiClient\Mappers\Mapper;
 
 abstract class AbstractDomainClient
@@ -35,14 +36,18 @@ abstract class AbstractDomainClient
 
     /**
      * @param string $service
-     * @param array $params
      * @param string $mapperClass
+     * @param array $params
      * @param string $typeItems
+     * @throws Exceptions\Exception
      * @return array|Mapper[]
      */
     protected function getInternalList($service, $mapperClass, array $params = array(), $typeItems = 'items')
     {
         $response = $this->client->send($service, $params);
+        if (is_string($response)) {
+            throw new Exception("Can't get items for string response");
+        }
         return $this->getItemsOfResponse($response, $mapperClass, $typeItems);
     }
 

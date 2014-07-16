@@ -32,7 +32,7 @@ class BranchRadiusSearchCriteria extends BranchSearchCriteria
 
     public function setPoint($lon, $lat)
     {
-        $this->offsetSet('point', self::point($lon, $lat));
+        $this->offsetSet('point', array($lon, $lat));
         return $this;
     }
 }

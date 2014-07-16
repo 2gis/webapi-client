@@ -116,7 +116,7 @@ abstract class AbstractSearchCriteria implements \ArrayAccess, \Countable, \Seri
 
     /**
      * @link http://php.net/manual/en/arrayaccess.offsetexists.php
-     * @param mixed $attribute
+     * @param string $attribute
      * @return boolean true on success or false on failure.
      */
     public function offsetExists($attribute)
@@ -126,7 +126,7 @@ abstract class AbstractSearchCriteria implements \ArrayAccess, \Countable, \Seri
 
     /**
      * @link http://php.net/manual/en/arrayaccess.offsetget.php
-     * @param mixed $attribute
+     * @param string $attribute
      * @return mixed Can return all value types.
      */
     public function offsetGet($attribute)
@@ -136,7 +136,7 @@ abstract class AbstractSearchCriteria implements \ArrayAccess, \Countable, \Seri
 
     /**
      * @link http://php.net/manual/en/arrayaccess.offsetset.php
-     * @param mixed $attribute
+     * @param string $attribute
      * @param mixed $value
      * @return void
      */
@@ -149,7 +149,7 @@ abstract class AbstractSearchCriteria implements \ArrayAccess, \Countable, \Seri
 
     /**
      * @link http://php.net/manual/en/arrayaccess.offsetunset.php
-     * @param mixed $offset
+     * @param string $offset
      * @return void
      */
     public function offsetUnset($offset)

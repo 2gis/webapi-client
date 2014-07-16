@@ -20,7 +20,7 @@ class Catalog extends AbstractDomainClient
      * Получить иерархию рубрик проекта
      * @param int $regionId
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/list
-     * @return Mappers\Rubric[]
+     * @return Rubric[]
      */
     public function getAllRubrics($regionId)
     {
@@ -63,6 +63,22 @@ class Catalog extends AbstractDomainClient
             'catalog/rubric/get',
             __NAMESPACE__ . '\Mappers\Rubric',
             array('id' => (int)$id, 'fields' => self::getArray($additionalFields))
+        );
+    }
+
+    /**
+     * Получение списка рубрик
+     * @param int[] $ids
+     * @param array $additionalFields
+     * @link http://api.2gis.ru/doc/2.0/catalog/rubric/get
+     * @return Rubric|bool
+     */
+    public function getRubrics(array $ids, array $additionalFields = array())
+    {
+        return $this->getSingle(
+            'catalog/rubric/get',
+            __NAMESPACE__ . '\Mappers\Rubric',
+            array('id' => self::getArray($ids), 'fields' => self::getArray($additionalFields))
         );
     }
 

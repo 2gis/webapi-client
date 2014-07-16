@@ -68,6 +68,10 @@ abstract class AbstractDomainClient
         return $result;
     }
 
+    /**
+     * @param array $values
+     * @return null|string
+     */
     public static function getArray(array $values)
     {
         return empty($values) ? null : implode(',', $values);

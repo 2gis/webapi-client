@@ -75,7 +75,7 @@ class Catalog extends AbstractDomainClient
      */
     public function getRubrics(array $ids, array $additionalFields = array())
     {
-        return $this->getSingle(
+        return $this->getInternalList(
             'catalog/rubric/get',
             __NAMESPACE__ . '\Mappers\Rubric',
             array('id' => self::getArray($ids), 'fields' => self::getArray($additionalFields))

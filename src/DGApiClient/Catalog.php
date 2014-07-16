@@ -17,14 +17,26 @@ class Catalog extends AbstractDomainClient
     );
 
     /**
+     * Получить иерархию рубрик проекта
+     * @param int $regionId
+     * @link http://api.2gis.ru/doc/2.0/catalog/rubric/list
+     * @return Mappers\Rubric[]
+     */
+    public function getAllRubrics($regionId)
+    {
+        return $this->getRubricList($regionId, 0, self::SORT_NAME, array('items.rubrics'));
+    }
+
+    /**
      * Поиск рубрик
      * @param int $regionId
      * @param int $parentId
      * @param string $sort
+     * @param array $additionalFields
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/list
      * @return Rubric[]
      */
-    public function getRubricList($regionId, $parentId = 0, $sort = self::SORT_NAME)
+    public function getRubricList($regionId, $parentId = 0, $sort = self::SORT_NAME, array $additionalFields = array())
     {
         return $this->getInternalList(
             'catalog/rubric/list',
@@ -33,6 +45,7 @@ class Catalog extends AbstractDomainClient
                 'region_id' => (int)$regionId,
                 'parent_id' => (int)$parentId,
                 'sort' => $sort,
+                'fields' => self::getArray($additionalFields),
             )
         );
     }
@@ -40,15 +53,16 @@ class Catalog extends AbstractDomainClient
     /**
      * Получение рубрики
      * @param int $id
+     * @param array $additionalFields
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/get
      * @return Rubric|bool
      */
-    public function getRubric($id)
+    public function getRubric($id, array $additionalFields = array())
     {
         return $this->getSingle(
             'catalog/rubric/get',
             __NAMESPACE__ . '\Mappers\Rubric',
-            array('id' => (int)$id)
+            array('id' => (int)$id, 'fields' => self::getArray($additionalFields))
         );
     }
 
@@ -56,15 +70,16 @@ class Catalog extends AbstractDomainClient
      * Получение рубрики по псевдониму
      * @param string $alias
      * @param int $regionId
+     * @param array $additionalFields
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/get-by-alias
      * @return Rubric|bool
      */
-    public function getRubricByAlias($alias, $regionId)
+    public function getRubricByAlias($alias, $regionId, array $additionalFields = array())
     {
         return $this->getSingle(
             'catalog/rubric/get',
             __NAMESPACE__ . '\Mappers\Rubric',
-            array('alias' => $alias, 'region_id' => (int)$regionId)
+            array('alias' => $alias, 'region_id' => (int)$regionId, 'fields' => self::getArray($additionalFields))
         );
     }
 

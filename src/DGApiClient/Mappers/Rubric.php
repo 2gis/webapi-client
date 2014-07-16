@@ -35,6 +35,9 @@ class Rubric extends Mapper
     /* @var string $kind */
     public $kind;
 
+    /* @var Rubric[] $rubrics */
+    public $rubrics = array();
+
     /**
      * @param array $data
      * @param string $className
@@ -44,5 +47,13 @@ class Rubric extends Mapper
     public static function factory($data, $className = __CLASS__)
     {
         return parent::factory($data, $className);
+    }
+
+    public function setRubrics($values)
+    {
+        $this->rubrics = array();
+        foreach ($values as $rubric) {
+            $this->rubrics[] = self::factory($rubric);
+        }
     }
 }

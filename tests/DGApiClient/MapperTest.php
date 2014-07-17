@@ -9,6 +9,7 @@ class MapperTest extends \PHPUnit_Framework_TestCase {
      */
     public function testInstantiateUnexpectedClass()
     {
-        Mapper::factory(array(), 'Object');
+        $object = new \DGApiClient\Mappers\MapperFactory();
+        $object->map(array(), 'stdObject');
     }
 } 

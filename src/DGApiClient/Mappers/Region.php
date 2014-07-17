@@ -2,7 +2,7 @@
 
 namespace DGApiClient\Mappers;
 
-class Region extends Mapper
+class Region extends AbstractMapper
 {
     /* @var int */
     public $id;

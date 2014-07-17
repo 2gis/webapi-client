@@ -2,7 +2,7 @@
 
 namespace DGApiClient\Mappers;
 
-class Station extends Mapper
+class Station extends AbstractMapper
 {
 
     /* @var int */
@@ -41,7 +41,7 @@ class Station extends Mapper
     public function setPlatforms($values)
     {
         foreach ($values as $platform) {
-            $this->platforms[] = PlatformOfStation::factory($platform);
+            $this->platforms[] = $this->factory->map($platform, 'PlatformOfStation');
         }
     }
 }

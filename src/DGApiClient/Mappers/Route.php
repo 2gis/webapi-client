@@ -2,7 +2,7 @@
 
 namespace DGApiClient\Mappers;
 
-class Route extends Mapper
+class Route extends AbstractMapper
 {
 
     /* @var int */

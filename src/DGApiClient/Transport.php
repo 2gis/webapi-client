@@ -18,7 +18,7 @@ class Transport extends AbstractDomainClient
     {
         return $this->getInternalList(
             'transport/station/search',
-            __NAMESPACE__ . '\Mappers\Station',
+            'Station',
             array(
                 'q' => (string)$q,
                 'region_id' => (int)$regionId
@@ -37,7 +37,7 @@ class Transport extends AbstractDomainClient
     {
         return $this->getSingle(
             'transport/station/get',
-            __NAMESPACE__ . '\Mappers\Station',
+            'Station',
             array(
                 'type' => (string)$type,
                 'platform_id' => (int)$platformId
@@ -56,7 +56,7 @@ class Transport extends AbstractDomainClient
     {
         return $this->getSingle(
             'transport/station/get',
-            __NAMESPACE__ . '\Mappers\Station',
+            'Station',
             array(
                 'type' => (string)$type,
                 'id' => (int)$id
@@ -74,7 +74,7 @@ class Transport extends AbstractDomainClient
     {
         return $this->getSingle(
             'transport/station_platform/get',
-            __NAMESPACE__ . '\Mappers\PlatformOfStation',
+            'PlatformOfStation',
             array(
                 'id' => (int)$id
             )
@@ -94,7 +94,7 @@ class Transport extends AbstractDomainClient
     {
         return $this->getInternalList(
             'transport/calculate_routes',
-            __NAMESPACE__ . '\Mappers\CalculateRoute',
+            'CalculateRoute',
             array(
                 'start' => (string)$start,
                 'end' => (string)$end,
@@ -139,7 +139,7 @@ class Transport extends AbstractDomainClient
         }
         return $this->getInternalList(
             'transport/calculate_directions',
-            __NAMESPACE__ . '\Mappers\CalculateDirection',
+            'CalculateDirection',
             array(
                 'waypoints' => (string)$waypoints,
                 'time' => (string)$time,
@@ -176,7 +176,7 @@ class Transport extends AbstractDomainClient
         }
         return $this->getInternalList(
             'transport/route/search',
-            __NAMESPACE__ . '\Mappers\Route',
+            'Route',
             $params
         );
     }
@@ -198,7 +198,7 @@ class Transport extends AbstractDomainClient
         }
         return $this->getInternalList(
             'transport/route/list',
-            __NAMESPACE__ . '\Mappers\Route',
+            'Route',
             $params
         );
     }
@@ -220,7 +220,7 @@ class Transport extends AbstractDomainClient
         }
         return $this->getSingle(
             'transport/route/get',
-            __NAMESPACE__ . '\Mappers\Route',
+            'Route',
             $params
         );
     }

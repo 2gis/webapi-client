@@ -2,8 +2,9 @@
 
 namespace DGApiClient;
 
-use DGApiClient\Exceptions\Exception;
-use \DGApiClient\Mappers\Mapper;
+use \DGApiClient\Exceptions\Exception;
+use \DGApiClient\Mappers\MapperFactory;
+use \DGApiClient\Mappers\MapperInterface;
 
 abstract class AbstractDomainClient
 {
@@ -11,54 +12,59 @@ abstract class AbstractDomainClient
     /* @var ApiConnection */
     protected $client;
 
+    protected $factory;
+
     /**
      * @param ApiConnection $client
+     * @param MapperFactory $mapper
+     * @internal param array $classMap
      */
-    public function __construct(ApiConnection $client)
+    public function __construct(ApiConnection $client, MapperFactory $mapper = null)
     {
         $this->client = $client;
+        $this->factory = $mapper ? $mapper : new MapperFactory();
     }
 
     /**
      * @param string $service
      * @param array $params
-     * @param string $mapperClass
-     * @return mixed|Mapper
+     * @param string $mapper
+     * @return mixed|MapperInterface
      */
-    protected function getSingle($service, $mapperClass, array $params = array())
+    protected function getSingle($service, $mapper, array $params = array())
     {
         $response = $this->client->send($service, $params);
         if (isset($response['items'][0])) {
-            return Mapper::factory($response['items'][0], $mapperClass);
+            return $this->factory->map($response['items'][0], $mapper);
         }
         return false;
     }
 
     /**
      * @param string $service
-     * @param string $mapperClass
+     * @param string $mapper
      * @param array $params
      * @param string $typeItems
      * @throws Exceptions\Exception
-     * @return array|Mapper[]
+     * @return array|MapperInterface[]
      */
-    protected function getInternalList($service, $mapperClass, array $params = array(), $typeItems = 'items')
+    protected function getInternalList($service, $mapper, array $params = array(), $typeItems = 'items')
     {
         $response = $this->client->send($service, $params);
         if (is_string($response)) {
             throw new Exception("Can't get items for string response");
         }
-        return $this->getItemsOfResponse($response, $mapperClass, $typeItems);
+        return $this->getItemsOfResponse($response, $mapper, $typeItems);
     }
 
     /**
      * @param array $response
-     * @param string $mapperClass
+     * @param string $mapper
      * @param string $items
      * @throws Exceptions\Exception
-     * @return array|Mapper[]
+     * @return array|MapperInterface[]
      */
-    protected function getItemsOfResponse($response, $mapperClass, $items)
+    protected function getItemsOfResponse($response, $mapper, $items)
     {
         if (empty($response[$items])) {
             return array();
@@ -66,9 +72,7 @@ abstract class AbstractDomainClient
 
         $result = array();
         foreach ($response[$items] as $value) {
-            /* @var Mapper $mapper */
-            $mapper = new $mapperClass();
-            $result[] = $mapper->populate($value);
+            $result[] = $this->factory->map($value, $mapper);
         }
         return $result;
     }

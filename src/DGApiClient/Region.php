@@ -31,7 +31,7 @@ class Region extends AbstractDomainClient
     ) {
         return $this->getInternalList(
             'region/list',
-            __NAMESPACE__ . '\Mappers\Region',
+            'Region',
             array(
                 'page' => (int)$page,
                 'page_size' => (int)$pageSize,
@@ -53,7 +53,7 @@ class Region extends AbstractDomainClient
     {
         return $this->getInternalList(
             'region/get',
-            __NAMESPACE__ . '\Mappers\Region',
+            'Region',
             array(
                 'id' => self::getArray($ids),
                 'fields' => self::getArray($additionalFields)
@@ -72,7 +72,7 @@ class Region extends AbstractDomainClient
     {
         return $this->getSingle(
             'region/get',
-            __NAMESPACE__ . '\Mappers\Region',
+            'Region',
             array('branch_id' => (int)$branchId, 'fields' => self::getArray($additionalFields))
         );
     }
@@ -88,7 +88,7 @@ class Region extends AbstractDomainClient
     {
         return $this->getSingle(
             'region/get',
-            __NAMESPACE__ . '\Mappers\Region',
+            'Region',
             array('id' => (int)$id, 'fields' => self::getArray($additionalFields))
         );
     }
@@ -104,7 +104,7 @@ class Region extends AbstractDomainClient
     {
         return $this->getInternalList(
             'region/search',
-            __NAMESPACE__ . '\Mappers\Region',
+            'Region',
             array_merge(
                 $criteria instanceof RegionSearchCriteria ? $criteria->toArray() : $criteria,
                 array(

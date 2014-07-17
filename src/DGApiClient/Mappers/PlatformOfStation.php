@@ -2,7 +2,7 @@
 
 namespace DGApiClient\Mappers;
 
-class PlatformOfStation extends Mapper
+class PlatformOfStation extends AbstractMapper
 {
     /* @var int */
     public $id;
@@ -42,9 +42,4 @@ class PlatformOfStation extends Mapper
 
     /* @var array|Null */
     public $links;
-
-    public static function factory($data, $className = __CLASS__)
-    {
-        return parent::factory($data, $className);
-    }
 }

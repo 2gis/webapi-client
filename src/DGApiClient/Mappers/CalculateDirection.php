@@ -2,7 +2,7 @@
 
 namespace DGApiClient\Mappers;
 
-class CalculateDirection extends Mapper
+class CalculateDirection extends AbstractMapper
 {
 
     /* @var int */

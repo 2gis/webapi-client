@@ -2,7 +2,7 @@
 
 namespace DGApiClient\Mappers;
 
-class Rubric extends Mapper
+class Rubric extends AbstractMapper
 {
 
     const GENERAL_RUBRIC = 'general_rubric';
@@ -38,22 +38,11 @@ class Rubric extends Mapper
     /* @var Rubric[] $rubrics */
     public $rubrics = array();
 
-    /**
-     * @param array $data
-     * @param string $className
-     * @return Rubric
-     * @throws \DGApiClient\Exceptions\Exception
-     */
-    public static function factory($data, $className = __CLASS__)
-    {
-        return parent::factory($data, $className);
-    }
-
     public function setRubrics($values)
     {
         $this->rubrics = array();
         foreach ($values as $rubric) {
-            $this->rubrics[] = self::factory($rubric);
+            $this->rubrics[] = $this->factory->map($rubric, 'Rubric');
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace DGApiClient\Mappers;
 
-class Branch extends Mapper
+class Branch extends AbstractMapper
 {
     /* @var int */
     public $id;
@@ -33,31 +33,20 @@ class Branch extends Mapper
 
     public $attributeGroups = array();
 
-    /**
-     * @param array $data
-     * @param string $className
-     * @return Branch
-     * @throws \DGApiClient\Exceptions\Exception
-     */
-    public static function factory($data, $className = __CLASS__)
-    {
-        return parent::factory($data, $className);
-    }
-
     public function setAddress($value)
     {
-        $this->address = Address::factory($value);
+        $this->address = $this->factory->map($value, 'Address');
     }
 
     public function setRubrics($values)
     {
         foreach ($values as $rubric) {
-            $this->rubrics[] = Rubric::factory($rubric);
+            $this->rubrics[] = $this->factory->map($rubric, 'Rubric');
         }
     }
 
     public function setOrg($value)
     {
-        $this->org = Organization::factory($value);
+        $this->org = $this->factory->map($value, 'Organization');
     }
 }

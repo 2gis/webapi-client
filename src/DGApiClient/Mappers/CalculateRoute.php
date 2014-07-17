@@ -2,7 +2,7 @@
 
 namespace DGApiClient\Mappers;
 
-class CalculateRoute extends Mapper
+class CalculateRoute extends AbstractMapper
 {
     /* @var int */
     public $totalDuration;

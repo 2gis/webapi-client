@@ -2,10 +2,17 @@
 
 namespace DGApiClient\Mappers;
 
-use DGApiClient\Exceptions\Exception;
-
-abstract class Mapper
+abstract class AbstractMapper implements MapperInterface
 {
+    /**
+     * @var MapperFactory $factory
+     */
+    protected $factory;
+
+    public function __construct(MapperFactory $mapperFactory = null)
+    {
+        $this->factory = $mapperFactory ? $mapperFactory : new MapperFactory();
+    }
 
     /**
      * @param array $data
@@ -23,22 +30,6 @@ abstract class Mapper
             }
         }
         return $this;
-    }
-
-    /**
-     * @param array $data
-     * @param string $className
-     * @return Mapper
-     * @throws \DGApiClient\Exceptions\Exception
-     */
-    public static function factory($data, $className = __CLASS__)
-    {
-        if (!is_subclass_of($className, '\\' . __NAMESPACE__ . '\Mapper')) {
-            throw new Exception("$className must be subclass of Mapper");
-        }
-        /* @var Mapper $object */
-        $object = new $className();
-        return $object->populate($data);
     }
 
     /**

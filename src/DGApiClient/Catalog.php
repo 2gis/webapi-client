@@ -40,7 +40,7 @@ class Catalog extends AbstractDomainClient
     {
         return $this->getInternalList(
             'catalog/rubric/list',
-            __NAMESPACE__ . '\Mappers\Rubric',
+            'Rubric',
             array(
                 'region_id' => (int)$regionId,
                 'parent_id' => (int)$parentId,
@@ -61,7 +61,7 @@ class Catalog extends AbstractDomainClient
     {
         return $this->getSingle(
             'catalog/rubric/get',
-            __NAMESPACE__ . '\Mappers\Rubric',
+            'Rubric',
             array('id' => (int)$id, 'fields' => self::getArray($additionalFields))
         );
     }
@@ -77,7 +77,7 @@ class Catalog extends AbstractDomainClient
     {
         return $this->getInternalList(
             'catalog/rubric/get',
-            __NAMESPACE__ . '\Mappers\Rubric',
+            'Rubric',
             array('id' => self::getArray($ids), 'fields' => self::getArray($additionalFields))
         );
     }
@@ -94,7 +94,7 @@ class Catalog extends AbstractDomainClient
     {
         return $this->getSingle(
             'catalog/rubric/get',
-            __NAMESPACE__ . '\Mappers\Rubric',
+            'Rubric',
             array('alias' => $alias, 'region_id' => (int)$regionId, 'fields' => self::getArray($additionalFields))
         );
     }
@@ -110,7 +110,7 @@ class Catalog extends AbstractDomainClient
     {
         return $this->getSingle(
             'catalog/branch/get',
-            __NAMESPACE__ . '\Mappers\Branch',
+            'Branch',
             array('id' => (int)$id, 'fields' => self::getArray($additionalFields))
         );
     }
@@ -132,7 +132,7 @@ class Catalog extends AbstractDomainClient
     ) {
         return $this->getInternalList(
             'catalog/branch/list',
-            __NAMESPACE__ . '\Mappers\Branch',
+            'Branch',
             array_merge(
                 $criteria instanceof BranchSearchCriteria ? $criteria->toArray() : $criteria,
                 array(
@@ -162,7 +162,7 @@ class Catalog extends AbstractDomainClient
     ) {
         return $this->getInternalList(
             'catalog/branch/search',
-            __NAMESPACE__ . '\Mappers\Branch',
+            'Branch',
             array_merge(
                 $criteria instanceof BranchSearchCriteria ? $criteria->toArray() : $criteria,
                 array(

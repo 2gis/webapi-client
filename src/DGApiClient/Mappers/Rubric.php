@@ -11,7 +11,9 @@ class Rubric extends AbstractMapper
     const KIND_PRIMARY = 'primary';
     const KIND_ADDITIONAL = 'additional';
 
-    /* @var int $id */
+    /**
+     * @var int $id
+     */
     public $id;
 
     /* @var string $name */
@@ -34,15 +36,4 @@ class Rubric extends AbstractMapper
 
     /* @var string $kind */
     public $kind;
-
-    /* @var Rubric[] $rubrics */
-    public $rubrics = array();
-
-    public function setRubrics($values)
-    {
-        $this->rubrics = array();
-        foreach ($values as $rubric) {
-            $this->rubrics[] = $this->factory->map($rubric, 'Rubric');
-        }
-    }
 }

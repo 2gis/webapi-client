@@ -4,34 +4,149 @@ namespace DGApiClient\Mappers;
 
 class Branch extends AbstractMapper
 {
-    /* @var int */
+    /**
+     * @var int
+     */
     public $id;
 
-    /* @var string */
-    public $name;
-
-    /* @var int */
+    /**
+     * Additional items.region_id
+     * @var int
+     */
     public $regionId;
 
-    /* @var string */
+    /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * Additional items.name_ex
+     * @var string
+     */
+    public $nameEx;
+
+    /**
+     * Additional items.alias
+     * @var string
+     */
+    public $alias;
+
+    /**
+     * Additional items.point
+     * @var float[]
+     */
+    public $point;
+
+    /**
+     * @var string
+     */
     public $regBcUrl;
 
-    /* @var string */
-    public $addressName;
+    /**
+     * Additional items.adm_div
+     * @var array
+     */
+    public $admDiv;
 
-    /* @var Address */
+    /**
+     * Additional items.address
+     * @var Address
+     */
     public $address;
 
-    /* @var Organization */
+    /**
+     * @var string
+     */
+    public $addressName;
+
+    /**
+     * @var string
+     */
+    public $addressComment;
+
+
+    /**
+     * Additional items.org
+     * @var Organization
+     */
     public $org;
 
-    /* @var Rubric[] */
+    /**
+     * Additional items.attribute_groups
+     * @var array
+     */
+    public $attributeGroups = array();
+
+    /**
+     * @var Rubric[]
+     */
     public $rubrics = array();
 
-    /* @var array */
-    public $reviews;
+    /**
+     * Additional items.locale
+     * @var string
+     */
+    public $locale;
 
-    public $attributeGroups = array();
+    /**
+     * Additional items.schedule
+     * @var string
+     */
+    public $schedule;
+
+    /**
+     * Additional items.plus_one
+     * @var array
+     */
+    public $plusOne;
+
+    /**
+     * Additional items.booklet
+     * @var string[]
+     */
+    public $booklet;
+
+    /**
+     * @var array
+     */
+    public $ads;
+
+    /**
+     * @var array
+     */
+    public $dates;
+
+    /**
+     * @var array
+     */
+    public $photos;
+
+    /**
+     * @var array
+     */
+    public $seeAlso;
+
+    /**
+     * @var array
+     */
+    public $externalProfiles;
+
+    /**
+     * Additional items.links
+     * @var array
+     */
+    public $links;
+
+    /**
+     * @var array
+     */
+    public $context;
+
+    /**
+     * @var mixed
+     */
+    public $externalContent;
 
     public function setAddress($value)
     {

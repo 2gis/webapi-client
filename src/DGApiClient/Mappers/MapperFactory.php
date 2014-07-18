@@ -35,6 +35,11 @@ class MapperFactory
         return $object->populate($data);
     }
 
+    /**
+     * @param string $name
+     * @return string
+     * @throws \DGApiClient\Exceptions\Exception
+     */
     protected function getClassName($name)
     {
         $className = isset($this->maps[$name]) ? $this->maps[$name] : '\\' . __NAMESPACE__ . '\\' . $name;

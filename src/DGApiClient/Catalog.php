@@ -32,7 +32,7 @@ class Catalog extends AbstractDomainClient
      * @param int $regionId
      * @param int $parentId
      * @param string $sort
-     * @param array $additionalFields
+     * @param string[] $additionalFields
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/list
      * @return Rubric[]
      */
@@ -53,7 +53,7 @@ class Catalog extends AbstractDomainClient
     /**
      * Получение рубрики
      * @param int $id
-     * @param array $additionalFields
+     * @param string[] $additionalFields
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/get
      * @return Rubric|bool
      */
@@ -69,7 +69,7 @@ class Catalog extends AbstractDomainClient
     /**
      * Получение списка рубрик
      * @param int[] $ids
-     * @param array $additionalFields
+     * @param string[] $additionalFields
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/get
      * @return Rubric|bool
      */
@@ -86,7 +86,7 @@ class Catalog extends AbstractDomainClient
      * Получение рубрики по псевдониму
      * @param string $alias
      * @param int $regionId
-     * @param array $additionalFields
+     * @param string[] $additionalFields
      * @link http://api.2gis.ru/doc/2.0/catalog/rubric/get-by-alias
      * @return Rubric|bool
      */
@@ -102,7 +102,7 @@ class Catalog extends AbstractDomainClient
     /**
      * Получение профиля филиала организации
      * @param int $id
-     * @param array $additionalFields
+     * @param string[] $additionalFields
      * @link http://api.2gis.ru/doc/2.0/catalog/profile/profile
      * @return mappers\Branch|bool
      */
@@ -149,7 +149,7 @@ class Catalog extends AbstractDomainClient
      * @param BranchSearchCriteria|string[] $criteria
      * @param int $page
      * @param int $pageSize
-     * @param array $additionalFields
+     * @param string[] $additionalFields
      * @link http://api.2gis.ru/doc/2.0/catalog/branch/search
      * @return mappers\Branch[]|array()
      */

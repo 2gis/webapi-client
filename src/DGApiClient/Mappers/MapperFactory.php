@@ -55,4 +55,11 @@ class MapperFactory
             "Undefined " . (is_callable($name) ? 'callable(' . print_r($name, true) .')' : "class " . $name)
         );
     }
+
+    public function setRubrics($values)
+    {
+        foreach ($values as $rubric) {
+            $this->rubrics[] = $this->factory->map($rubric, 'Rubric');
+        }
+    }
 }

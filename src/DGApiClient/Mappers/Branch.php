@@ -34,13 +34,6 @@ namespace DGApiClient\Mappers;
  */
 class Branch extends AbstractMapper
 {
-    public function setRubrics($values)
-    {
-        foreach ($values as $rubric) {
-            $this->rubrics[] = $this->factory->map($rubric, 'Rubric');
-        }
-    }
-
     public function setOrg($value)
     {
         $this->org = $this->factory->map($value, 'Organization');

@@ -51,8 +51,8 @@ class MapperFactory
         if (class_exists($className)) {
             return $className;
         }
-        throw new Exception("Undefined " .
-            (is_callable($name) ? 'callable(' . print_r($name, true) .')' : "class " . $name)
+        throw new Exception(
+            "Undefined " . (is_callable($name) ? 'callable(' . print_r($name, true) .')' : "class " . $name)
         );
     }
 }

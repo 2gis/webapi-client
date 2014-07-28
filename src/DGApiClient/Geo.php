@@ -4,7 +4,6 @@ namespace DGApiClient;
 
 class Geo extends AbstractDomainClient
 {
-
     /**
      * Список гео объектов
      * @param $regionId
@@ -13,9 +12,10 @@ class Geo extends AbstractDomainClient
      * @param int $pageSize
      * @param string[] $additionalFields
      * @throws Exceptions\Exception
-     * @return array|\DGApiClient\Mappers\MapperInterface[]
+     * @return \DGApiClient\Mappers\Geo\GeoObject[]
      */
-    public function geoList($regionId,
+    public function geoList(
+        $regionId,
         $type = array(),
         $page = null,
         $pageSize = null,
@@ -23,7 +23,7 @@ class Geo extends AbstractDomainClient
     ) {
         return $this->getInternalList(
             'geo/list',
-            'Branch',
+            array(__NAMESPACE__ . '\Mappers\Geo\GeoObject', 'geoMapResolver'),
             array(
                 'region_id' => $regionId,
                 'type' => self::getArray($type),

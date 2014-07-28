@@ -2,6 +2,18 @@
 
 namespace DGApiClient\Mappers;
 
+/**
+ * Class Rubric
+ * @package DGApiClient\Mappers
+ * @property int $id
+ * @property string $name
+ * @property string $type
+ * @property string $alias
+ * @property int $parentId
+ * @property int $orgCount
+ * @property int $branchCount
+ * @property string $kind
+ */
 class Rubric extends AbstractMapper
 {
 
@@ -10,30 +22,4 @@ class Rubric extends AbstractMapper
 
     const KIND_PRIMARY = 'primary';
     const KIND_ADDITIONAL = 'additional';
-
-    /**
-     * @var int $id
-     */
-    public $id;
-
-    /* @var string $name */
-    public $name;
-
-    /* @var string $type */
-    public $type;
-
-    /* @var string $alias */
-    public $alias;
-
-    /* @var int $parentId */
-    public $parentId;
-
-    /* @var int $orgCount */
-    public $orgCount;
-
-    /* @var int $branchCount */
-    public $branchCount;
-
-    /* @var string $kind */
-    public $kind;
 }

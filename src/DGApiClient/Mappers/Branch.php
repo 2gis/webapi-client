@@ -2,157 +2,38 @@
 
 namespace DGApiClient\Mappers;
 
+/**
+ * Class Branch
+ * @package DGApiClient\Mappers
+ * @property int $id
+ * @property int $regionId optional items.region_id
+ * @property string $name
+ * @property string $nameEx optional items.name_ex
+ * @property string $alias optional items.alias
+ * @property float[] $point optional items.point
+ * @property string $regBcUrl
+ * @property Geo\AdministrativeUnit[] $admDiv optional items.adm_div
+ * @property Address $address optional items.address
+ * @property string $addressName
+ * @property string $addressComment
+ * @property Organization $org optional items.org
+ * @property array $attributeGroups optional items.attribute_groups
+ * @property Rubric[] $rubrics
+ * @property string $locale optional items.locale
+ * @property string $schedule optional items.schedule
+ * @property array $plusOne optional items.plus_one
+ * @property string[] $booklet optional items.booklet
+ * @property array $ads
+ * @property array $dates
+ * @property array $photos
+ * @property array $seeAlso
+ * @property array $externalProfiles
+ * @property array $links
+ * @property array $context
+ * @property mixed $externalContent
+ */
 class Branch extends AbstractMapper
 {
-    /**
-     * @var int
-     */
-    public $id;
-
-    /**
-     * Additional items.region_id
-     * @var int
-     */
-    public $regionId;
-
-    /**
-     * @var string
-     */
-    public $name;
-
-    /**
-     * Additional items.name_ex
-     * @var string
-     */
-    public $nameEx;
-
-    /**
-     * Additional items.alias
-     * @var string
-     */
-    public $alias;
-
-    /**
-     * Additional items.point
-     * @var float[]
-     */
-    public $point;
-
-    /**
-     * @var string
-     */
-    public $regBcUrl;
-
-    /**
-     * Additional items.adm_div
-     * @var array
-     */
-    public $admDiv;
-
-    /**
-     * Additional items.address
-     * @var Address
-     */
-    public $address;
-
-    /**
-     * @var string
-     */
-    public $addressName;
-
-    /**
-     * @var string
-     */
-    public $addressComment;
-
-
-    /**
-     * Additional items.org
-     * @var Organization
-     */
-    public $org;
-
-    /**
-     * Additional items.attribute_groups
-     * @var array
-     */
-    public $attributeGroups = array();
-
-    /**
-     * @var Rubric[]
-     */
-    public $rubrics = array();
-
-    /**
-     * Additional items.locale
-     * @var string
-     */
-    public $locale;
-
-    /**
-     * Additional items.schedule
-     * @var string
-     */
-    public $schedule;
-
-    /**
-     * Additional items.plus_one
-     * @var array
-     */
-    public $plusOne;
-
-    /**
-     * Additional items.booklet
-     * @var string[]
-     */
-    public $booklet;
-
-    /**
-     * @var array
-     */
-    public $ads;
-
-    /**
-     * @var array
-     */
-    public $dates;
-
-    /**
-     * @var array
-     */
-    public $photos;
-
-    /**
-     * @var array
-     */
-    public $seeAlso;
-
-    /**
-     * @var array
-     */
-    public $externalProfiles;
-
-    /**
-     * Additional items.links
-     * @var array
-     */
-    public $links;
-
-    /**
-     * @var array
-     */
-    public $context;
-
-    /**
-     * @var mixed
-     */
-    public $externalContent;
-
-    public function setAddress($value)
-    {
-        $this->address = $this->factory->map($value, 'Address');
-    }
-
     public function setRubrics($values)
     {
         foreach ($values as $rubric) {

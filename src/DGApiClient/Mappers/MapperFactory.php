@@ -26,7 +26,7 @@ class MapperFactory
      */
     public function map($data, $className = __CLASS__)
     {
-        $className = $this->getClassName($className);
+        $className = $this->getClassName($className, $data);
         $object = new $className($this);
         if (!$object instanceof MapperInterface) {
             throw new Exception("$className must implement MapperInterface");
@@ -36,16 +36,23 @@ class MapperFactory
     }
 
     /**
-     * @param string $name
+     * @param string|callable $name
+     * @param mixed $data
      * @return string
      * @throws \DGApiClient\Exceptions\Exception
      */
-    protected function getClassName($name)
+    protected function getClassName($name, $data = null)
     {
-        $className = isset($this->maps[$name]) ? $this->maps[$name] : '\\' . __NAMESPACE__ . '\\' . $name;
+        if (is_callable($name)) {
+            return $this->getClassName(call_user_func($name, $data));
+        } else {
+            $className = isset($this->maps[$name]) ? $this->maps[$name] : '\\' . __NAMESPACE__ . '\\' . $name;
+        }
         if (class_exists($className)) {
             return $className;
         }
-        throw new Exception("Undefined class $name");
+        throw new Exception("Undefined " .
+            (is_callable($name) ? 'callable(' . print_r($name, true) .')' : "class " . $name)
+        );
     }
 }

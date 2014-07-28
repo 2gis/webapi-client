@@ -25,7 +25,7 @@ abstract class AbstractMapper implements MapperInterface
             $methodName = 'set' . ucfirst($propertyName);
             if (method_exists($this, $methodName)) {
                 $this->$methodName($value);
-            } elseif (property_exists($this, lcfirst($propertyName))) {
+            } else {
                 $this->$propertyName = $value;
             }
         }
@@ -45,5 +45,12 @@ abstract class AbstractMapper implements MapperInterface
             $str = lcfirst($str);
         }
         return $str;
+    }
+
+    protected function setAddress($value)
+    {
+        if ($value !== null) {
+            $this->address = $this->factory->map($value, 'Address');
+        }
     }
 }

@@ -15,6 +15,11 @@ class MapperFactory
 
     public function __construct(array $classMap = array())
     {
+        $this->setClassMap($classMap);
+    }
+
+    public function setClassMap(array $classMap = array())
+    {
         $this->maps = $classMap;
     }
 
@@ -41,7 +46,7 @@ class MapperFactory
      * @return string
      * @throws \DGApiClient\Exceptions\Exception
      */
-    protected function getClassName($name, $data = null)
+    public function getClassName($name, $data = null)
     {
         if (is_callable($name)) {
             return $this->getClassName(call_user_func($name, $data));

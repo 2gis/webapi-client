@@ -13,7 +13,13 @@ class Catalog extends AbstractDomainClient
 
     public static $scopes = array(
         'none' => array(),
-        'full' => array('*'),
+        'full' => array(
+            'items.region_id', 'items.name_ex', 'items.alias', 'items.point',
+            'items.adm_div', 'items.org', 'items.dates', 'items.photos',
+            'items.see_also', 'items.external_profiles', 'items.flags',
+            'items.links', 'items.external_content', 'items.booklet',
+            'items.plus_one', 'items.locale'
+        ),
     );
 
     /**

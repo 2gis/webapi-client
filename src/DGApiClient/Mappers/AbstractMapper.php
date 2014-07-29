@@ -2,16 +2,54 @@
 
 namespace DGApiClient\Mappers;
 
-abstract class AbstractMapper implements MapperInterface
+abstract class AbstractMapper implements MapperInterface, \Serializable
 {
     /**
      * @var MapperFactory $factory
      */
     protected $factory;
 
+    protected static $factoryAwareProperties = array('address', 'rubrics', 'admDiv', 'org', 'attraction');
+
     public function __construct(MapperFactory $mapperFactory = null)
     {
-        $this->factory = $mapperFactory ? $mapperFactory : new MapperFactory();
+        $this->setFactory($mapperFactory ? $mapperFactory : new MapperFactory());
+    }
+
+    public function setFactory(MapperFactory $factory)
+    {
+        $this->factory = $factory;
+        foreach (self::$factoryAwareProperties as $property) {
+            if (!isset($this->$property)) {
+                continue;
+            }
+            if (is_array($this->$property)) {
+                foreach ($this->$property as $element) {
+                    if (method_exists($element, 'setFactory')) {
+                        $element->setFactory($factory);
+                    }
+                }
+            } else {
+                if (method_exists($this->$property, 'setFactory')) {
+                    $this->$property->setFactory($factory);
+                }
+            }
+        }
+    }
+
+    public function serialize()
+    {
+        $data = get_object_vars($this);
+        unset($data['factory']);
+        return serialize($data);
+    }
+
+    public function unserialize($data)
+    {
+        $data = unserialize($data);
+        foreach ($data as $key=>$value) {
+            $this->$key = $value;
+        }
     }
 
     /**

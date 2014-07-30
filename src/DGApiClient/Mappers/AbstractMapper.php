@@ -47,7 +47,7 @@ abstract class AbstractMapper implements MapperInterface, \Serializable
     public function unserialize($data)
     {
         $data = unserialize($data);
-        foreach ($data as $key=>$value) {
+        foreach ($data as $key => $value) {
             $this->$key = $value;
         }
     }

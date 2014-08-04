@@ -102,7 +102,7 @@ abstract class AbstractMapper implements MapperInterface, \Serializable
      */
     public function setRubrics($values)
     {
-        $this->rubrics = [];
+        $this->rubrics = array();
         foreach ($values as $rubric) {
             $this->rubrics[] = $this->factory->map($rubric, 'Rubric');
         }

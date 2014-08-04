@@ -40,6 +40,6 @@ class PlatformOfStation extends AbstractMapper
     /* @var object[] */
     public $routes;
 
-    /* @var array|Null */
+    /* @var array|null */
     public $links;
 }

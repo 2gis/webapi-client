@@ -25,8 +25,7 @@ class GeoObject extends AbstractMapper
         if (!isset($data['type'])) {
             throw new Exception("Can't resolve mapper because of property 'type' not found in data");
         }
-        switch ($data['type'])
-        {
+        switch ($data['type']) {
             case 'adm_div':
                 return 'Geo\AdministrativeUnit';
             case 'building':
@@ -52,7 +51,7 @@ class GeoObject extends AbstractMapper
 
     protected function setAdmDiv($values)
     {
-        $this->advDiv = array();
+        $this->admDiv = array();
         foreach ($values as $unit) {
             $this->admDiv[] = $this->factory->map($unit, 'Geo\AdministrativeUnit');
         }

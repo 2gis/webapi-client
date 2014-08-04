@@ -17,8 +17,8 @@ namespace DGApiClient\Mappers;
 class Rubric extends AbstractMapper
 {
 
-    const GENERAL_RUBRIC = 'general_rubric';
-    const SUB_RUBRIC = 'rubric';
+    const RUBRIC_GENERAL = 'general_rubric';
+    const RUBRIC_SUB = 'rubric';
 
     const KIND_PRIMARY = 'primary';
     const KIND_ADDITIONAL = 'additional';

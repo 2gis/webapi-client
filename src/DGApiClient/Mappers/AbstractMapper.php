@@ -16,6 +16,21 @@ abstract class AbstractMapper implements MapperInterface, \Serializable
         $this->setFactory($mapperFactory ? $mapperFactory : new MapperFactory());
     }
 
+    public function serialize()
+    {
+        $data = get_object_vars($this);
+        unset($data['factory']);
+        return serialize($data);
+    }
+
+    public function unserialize($data)
+    {
+        $data = unserialize($data);
+        foreach ($data as $key => $value) {
+            $this->$key = $value;
+        }
+    }
+
     public function setFactory(MapperFactory $factory)
     {
         $this->factory = $factory;
@@ -34,21 +49,6 @@ abstract class AbstractMapper implements MapperInterface, \Serializable
                     $this->$property->setFactory($factory);
                 }
             }
-        }
-    }
-
-    public function serialize()
-    {
-        $data = get_object_vars($this);
-        unset($data['factory']);
-        return serialize($data);
-    }
-
-    public function unserialize($data)
-    {
-        $data = unserialize($data);
-        foreach ($data as $key => $value) {
-            $this->$key = $value;
         }
     }
 
@@ -85,10 +85,26 @@ abstract class AbstractMapper implements MapperInterface, \Serializable
         return $str;
     }
 
+    /**
+     * @param array $value
+     * @throws \DGApiClient\Exceptions\Exception
+     */
     protected function setAddress($value)
     {
         if ($value !== null) {
             $this->address = $this->factory->map($value, 'Address');
+        }
+    }
+
+    /**
+     * @param array[] $values
+     * @throws \DGApiClient\Exceptions\Exception
+     */
+    public function setRubrics($values)
+    {
+        $this->rubrics = [];
+        foreach ($values as $rubric) {
+            $this->rubrics[] = $this->factory->map($rubric, 'Rubric');
         }
     }
 }

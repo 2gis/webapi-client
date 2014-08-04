@@ -29,7 +29,7 @@ class Station extends AbstractMapper
     /* @var object|null  */
     public $schedule;
 
-    /* @var array[]object  */
+    /* @var array[] */
     public $platforms;
 
     /* @var object[]  */

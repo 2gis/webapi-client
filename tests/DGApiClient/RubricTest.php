@@ -39,7 +39,7 @@ class RubricTest extends AbstractDomainTestCase {
         $this->assertTrue(is_array($result), 'getRubricList must return array');
         foreach ($result as $value) {
             $this->assertTrue($value instanceof Rubric, 'Each value must be instance of Rubric');
-            $this->assertEquals(Rubric::GENERAL_RUBRIC, $value->type);
+            $this->assertEquals(Rubric::RUBRIC_GENERAL, $value->type);
         }
     }
 
@@ -52,7 +52,7 @@ class RubricTest extends AbstractDomainTestCase {
         $this->assertTrue(is_array($result), 'getRubricList must return array');
         foreach ($result as $value) {
             $this->assertTrue($value instanceof Rubric, 'Each value must be instance of Rubric');
-            $this->assertEquals(Rubric::SUB_RUBRIC, $value->type);
+            $this->assertEquals(Rubric::RUBRIC_SUB, $value->type);
         }
     }
 

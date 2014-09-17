@@ -6,6 +6,10 @@ use \DGApiClient\Exceptions\Exception;
 use \DGApiClient\Mappers\MapperFactory;
 use \DGApiClient\Mappers\MapperInterface;
 
+/**
+ * Class AbstractDomainClient
+ * @package DGApiClient
+ */
 abstract class AbstractDomainClient
 {
 

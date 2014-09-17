@@ -4,6 +4,7 @@ namespace DGApiClient\SearchCriteria;
 
 /**
  * Class BranchSearchCriteria
+ * @package DGApiClient\SearchCriteria
  * @property int $work_time
  * @property string $sort
  * @property bool $has_reviews
@@ -15,7 +16,6 @@ namespace DGApiClient\SearchCriteria;
  * @property int|int[] $city_id
  * @property int|int[] $district_id
  * @property int|int[] $building_id
- * @package DGApiClient\SearchCriteria
  */
 class BranchSearchCriteria extends AbstractSearchCriteria
 {

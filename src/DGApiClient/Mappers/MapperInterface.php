@@ -2,6 +2,10 @@
 
 namespace DGApiClient\Mappers;
 
+/**
+ * Interface MapperInterface
+ * @package DGApiClient\Mappers
+ */
 interface MapperInterface
 {
 

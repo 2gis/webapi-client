@@ -4,6 +4,10 @@ namespace DGApiClient\Mappers;
 
 use DGApiClient\Exceptions\Exception;
 
+/**
+ * Class MapperFactory
+ * @package DGApiClient\Mappers
+ */
 class MapperFactory
 {
     /**

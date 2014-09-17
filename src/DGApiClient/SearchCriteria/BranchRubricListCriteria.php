@@ -4,6 +4,7 @@ namespace DGApiClient\SearchCriteria;
 
 /**
  * Class BranchRubricListCriteria
+ * @package DGApiClient\SearchCriteria
  */
 class BranchRubricListCriteria extends BranchRegionSearchCriteria
 {

@@ -4,6 +4,7 @@ namespace DGApiClient\SearchCriteria;
 
 /**
  * Class BranchBuildingListCriteria
+ * @package DGApiClient\SearchCriteria
  * @property int $building_id required
  * @property bool $servicing
  */

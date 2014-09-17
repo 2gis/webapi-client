@@ -2,6 +2,10 @@
 
 namespace DGApiClient\Mappers;
 
+/**
+ * Class CalculateRoute
+ * @package DGApiClient\Mappers
+ */
 class CalculateRoute extends AbstractMapper
 {
     /* @var int */

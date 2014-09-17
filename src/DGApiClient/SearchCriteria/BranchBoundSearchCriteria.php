@@ -4,9 +4,9 @@ namespace DGApiClient\SearchCriteria;
 
 /**
  * Class BranchBoundSearchCriteria
+ * @package DGApiClient\SearchCriteria
  * @property string $point1
  * @property string $point2
- * @package DGApiClient\SearchCriteria
  */
 class BranchBoundSearchCriteria extends BranchSearchCriteria
 {

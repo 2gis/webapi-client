@@ -4,6 +4,7 @@ namespace DGApiClient\SearchCriteria;
 
 /**
  * Class BranchRegionSearchCriteria
+ * @package DGApiClient\SearchCriteria
  * @property int $region_id
  */
 class BranchRegionSearchCriteria extends BranchSearchCriteria

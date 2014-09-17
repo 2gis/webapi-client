@@ -5,18 +5,61 @@ namespace DGApiClient\Mappers;
 /**
  * Class Region
  * @package DGApiClient\Mappers
- * @property int $id
- * @property string $name
- * @property string[] $nameGrammaticalCases
- * @property string $domain
- * @property string $language
- * @property string[] $availableLanguages
- * @property string $locate
- * @property string[] $locales
- * @property mixed $timeZone
- * @property string $bounds
- * @property array $statistics
  */
 class Region extends AbstractMapper
 {
+    /**
+     * @var int
+     */
+    public $id;
+
+    /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @var string[]
+     */
+    public $nameGrammaticalCases = array();
+
+    /**
+     * @var string
+     */
+    public $domain;
+
+    /**
+     * @var string
+     */
+    public $language;
+
+    /**
+     * @var string[]
+     */
+    public $availableLanguages = array();
+
+    /**
+     * @var string
+     */
+    public $locale;
+
+    /**
+     * @var string[]
+     */
+    public $locales = array();
+
+    /**
+     * @var mixed
+     */
+    public $timeZone;
+
+    /**
+     * @var string
+     */
+    public $bounds;
+
+    /**
+     * @var array
+     */
+    public $statistics = array();
 }

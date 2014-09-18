@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreFile
 
 Yii::setPathOfAlias('DGApiClient', __DIR__ . '/');
 
@@ -30,7 +31,8 @@ use DGApiClient\Mappers\MapperFactory;
  * @property \DGApiClient\Geo $geo
  * @property string[] $classMap
  */
-class YiiWebApi extends \CApplicationComponent {
+class YiiWebApi extends \CApplicationComponent
+{
 
     /**
      * @var string
@@ -115,7 +117,8 @@ class YiiWebApi extends \CApplicationComponent {
     /**
      * @return Region
      */
-    public function getRegion(){
+    public function getRegion()
+    {
         return $this->getApiDomain('region');
     }
 

@@ -5,15 +5,46 @@ namespace DGApiClient\Mappers\Geo;
 /**
  * Class Attraction
  * @package DGApiClient\Mappers\Geo
- * @property AdministrativeUnit[] $admDiv optional items.adm_div
- * @property string $name
- * @property string $subtypeName
- * @property string $fullName
- * @property string $description optional items.description
- * @property string $dates
- * @property string $authors
- * @property array $context
  */
 class Attraction extends GeoObject
 {
+    /**
+     * @var AdministrativeUnit[] - optional items.adm_div
+     */
+    public $admDiv = array();
+
+    /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @var string
+     */
+    public $subtypeName;
+
+    /**
+     * @var string
+     */
+    public $fullName;
+
+    /**
+     * @var string - optional items.description
+     */
+    public $description;
+
+    /**
+     * @var string
+     */
+    public $dates;
+
+    /**
+     * @var string
+     */
+    public $authors;
+
+    /**
+     * @var array
+     */
+    public $context = array();
 }

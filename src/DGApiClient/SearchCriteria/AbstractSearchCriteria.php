@@ -4,6 +4,10 @@ namespace DGApiClient\SearchCriteria;
 
 use DGApiClient\Exceptions\SearchCriteriaException;
 
+/**
+ * Class AbstractSearchCriteria
+ * @package DGApiClient\SearchCriteria
+ */
 abstract class AbstractSearchCriteria implements \ArrayAccess, \Countable, \Serializable
 {
 

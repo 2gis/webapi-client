@@ -4,6 +4,10 @@ namespace DGApiClient;
 
 use \DGApiClient\Mappers;
 
+/**
+ * Class Transport
+ * @package DGApiClient
+ */
 class Transport extends AbstractDomainClient
 {
 

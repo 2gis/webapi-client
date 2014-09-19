@@ -5,6 +5,10 @@ namespace DGApiClient;
 use DGApiClient\SearchCriteria\BranchSearchCriteria;
 use DGApiClient\Mappers\Rubric;
 
+/**
+ * Class Catalog
+ * @package DGApiClient
+ */
 class Catalog extends AbstractDomainClient
 {
 

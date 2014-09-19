@@ -8,12 +8,23 @@ use DGApiClient\Mappers\AbstractMapper;
 /**
  * Class GeoObject
  * @package DGApiClient\Mappers\Geo
- * @property int $id
- * @property string $geometry
- * @property string $type
  */
 class GeoObject extends AbstractMapper
 {
+    /**
+     * @var int
+     */
+    public $id;
+
+    /**
+     * @var string
+     */
+    public $geometry;
+
+    /**
+     * @var string
+     */
+    public $type;
 
     /**
      * @param array $data

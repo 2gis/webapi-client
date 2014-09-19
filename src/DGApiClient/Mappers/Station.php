@@ -2,6 +2,10 @@
 
 namespace DGApiClient\Mappers;
 
+/**
+ * Class Station
+ * @package DGApiClient\Mappers
+ */
 class Station extends AbstractMapper
 {
 

@@ -2,6 +2,10 @@
 
 namespace DGApiClient\Mappers;
 
+/**
+ * Class Route
+ * @package DGApiClient\Mappers
+ */
 class Route extends AbstractMapper
 {
 

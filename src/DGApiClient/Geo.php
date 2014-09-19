@@ -2,6 +2,10 @@
 
 namespace DGApiClient;
 
+/**
+ * Class Geo
+ * @package DGApiClient
+ */
 class Geo extends AbstractDomainClient
 {
     /**

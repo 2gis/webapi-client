@@ -5,9 +5,16 @@ namespace DGApiClient\Mappers;
 /**
  * Class Organization
  * @package DGApiClient\Mappers
- * @property int $id
- * @property string $name
  */
 class Organization extends AbstractMapper
 {
+    /**
+     * @var int
+     */
+    public $id;
+
+    /**
+     * @var string
+     */
+    public $name;
 }

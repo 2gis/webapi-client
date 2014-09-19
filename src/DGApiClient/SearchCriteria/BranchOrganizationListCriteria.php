@@ -4,6 +4,7 @@ namespace DGApiClient\SearchCriteria;
 
 /**
  * Class BranchOrganizationListCriteria
+ * @package DGApiClient\SearchCriteria
  * @property int $org_id
  * @property string|int[] $point
  * @property int $radius

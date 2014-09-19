@@ -4,6 +4,10 @@ namespace DGApiClient;
 
 use DGApiClient\SearchCriteria\RegionSearchCriteria;
 
+/**
+ * Class Region
+ * @package DGApiClient
+ */
 class Region extends AbstractDomainClient
 {
 

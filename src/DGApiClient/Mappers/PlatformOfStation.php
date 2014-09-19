@@ -2,6 +2,10 @@
 
 namespace DGApiClient\Mappers;
 
+/**
+ * Class PlatformOfStation
+ * @package DGApiClient\Mappers
+ */
 class PlatformOfStation extends AbstractMapper
 {
     /* @var int */

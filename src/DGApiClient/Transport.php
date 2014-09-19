@@ -12,7 +12,7 @@ class Transport extends AbstractDomainClient
      * @param string $q
      * @param string $regionId
      * @link http://api.2gis.ru/doc/2.0/transport/station/search
-     * @return mappers\Station|bool
+     * @return mappers\Station[]|array
      */
     public function getStationList($q, $regionId)
     {
@@ -88,7 +88,7 @@ class Transport extends AbstractDomainClient
      * @param string $routeSubtypes
      * @param string $format
      * @link http://api.2gis.ru/doc/2.0/transport/calculate/routes
-     * @return mappers\CalculateRoute|bool
+     * @return mappers\CalculateRoute[]|array
      */
     public function getCalculateRouteList($start, $end, $routeSubtypes, $format = 'json')
     {
@@ -125,7 +125,7 @@ class Transport extends AbstractDomainClient
      * @param string $routingType (optimal_statistic, shortest)
      * @param string $format
      * @link http://api.2gis.ru/doc/2.0/transport/calculate/directions
-     * @return mappers\CalculateDirection|bool
+     * @return mappers\CalculateDirection[]|array
      */
     public function getCalculateDirectionList(
         $waypoints,
@@ -158,7 +158,7 @@ class Transport extends AbstractDomainClient
      * @param int $pageSize (1 - 2000)
      * @param string $fields
      * @link http://api.2gis.ru/doc/2.0/transport/route/search
-     * @return mappers\Route|bool
+     * @return mappers\Route[]|array
      */
     public function getRouteList($regionId, $q, $routeType = null, $page = 1, $pageSize = 20, $fields = null)
     {
@@ -186,7 +186,7 @@ class Transport extends AbstractDomainClient
      * @param int $platformId
      * @param string $fields
      * @link http://api.2gis.ru/doc/2.0/transport/route/list-by-platform-id
-     * @return mappers\Route|bool
+     * @return mappers\Route[]|array
      */
     public function getRouteListByPlatform($platformId, $fields = null)
     {

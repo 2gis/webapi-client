@@ -20,7 +20,7 @@ class Region extends AbstractDomainClient
      * @param string[] $countryCodeFilter
      * @param string[] $additionalFields
      * @link http://api.2gis.ru/doc/2.0/region/method/list
-     * @return Region[]
+     * @return Mappers\Region[]
      */
     public function getList(
         $page = null,
@@ -47,7 +47,7 @@ class Region extends AbstractDomainClient
      * @param int[] $ids
      * @param string[] $additionalFields
      * @link http://api.2gis.ru/doc/2.0/region/method/get
-     * @return Mappers\Region|array
+     * @return Mappers\Region[]|array
      */
     public function getListByIds($ids, array $additionalFields = array())
     {

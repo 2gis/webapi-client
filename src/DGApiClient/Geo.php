@@ -12,6 +12,7 @@ class Geo extends AbstractDomainClient
      * @param int $pageSize
      * @param string[] $additionalFields
      * @throws Exceptions\Exception
+     * @link http://api.2gis.ru/doc/2.0/geo/method/list
      * @return \DGApiClient\Mappers\Geo\GeoObject[]
      */
     public function geoList(
@@ -45,27 +46,28 @@ class Geo extends AbstractDomainClient
      * @param int $pageSize
      * @param string[] $additionalFields
      * @throws Exceptions\Exception
+     * @link http://api.2gis.ru/doc/2.0/geo/method/search-query/query-point-radius
      * @return \DGApiClient\Mappers\Geo\GeoObject[]
      */
-     public function geoSearch(
-            $point,
-            $radius = 10,
-            $type = array(),
-            $page = null,
-            $pageSize = null,
-            array $additionalFields = array()
-        ) {
-            return $this->getInternalList(
-                'geo/search',
-                array(__NAMESPACE__ . '\Mappers\Geo\GeoObject', 'geoMapResolver'),
-                array(
-                    'point' => $point,
-                    'radius' => $radius,
-                    'type' => self::getArray($type),
-                    'page' => $page,
-                    'page_size' => $pageSize,
-                    'fields' => self::getArray($additionalFields),
-                )
-            );
-        }
+    public function geoSearch(
+        $point,
+        $radius = 10,
+        $type = array(),
+        $page = null,
+        $pageSize = null,
+        array $additionalFields = array()
+    ) {
+        return $this->getInternalList(
+            'geo/search',
+            array(__NAMESPACE__ . '\Mappers\Geo\GeoObject', 'geoMapResolver'),
+            array(
+                'point' => $point,
+                'radius' => $radius,
+                'type' => self::getArray($type),
+                'page' => $page,
+                'page_size' => $pageSize,
+                'fields' => self::getArray($additionalFields),
+            )
+        );
+    }
 }

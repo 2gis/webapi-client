@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * По вопросам использования API - http://api.2gis.ru/
+ */
+
 return array(
-    'autotestKey' => 'ruskqt2111',
+    'autotestKey' => '<enter your api key here>',
 );
